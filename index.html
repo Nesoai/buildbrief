@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BuildBrief — get your vision understood</title>
+<meta name="description" content="BuildBrief turns an early-stage housing idea into a professional Development Intent Brief — the numbers, priorities, and pro-ready language that make architects, GCs, and lenders understand your project the first time. Free, in your browser.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230d1117'/%3E%3Cpath d='M8 24 V14 L16 8 L24 14 V24 H18 V18 H14 V24 Z' fill='none' stroke='%23f472b6' stroke-width='2.2' stroke-linejoin='round'/%3E%3C/svg%3E">
+<meta name="theme-color" content="#0d1117">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script>
+const GA_ID="";
+if(GA_ID){const s=document.createElement('script');s.async=true;s.src='https://www.googletagmanager.com/gtag/js?id='+GA_ID;document.head.appendChild(s);window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config',GA_ID);}
+</script>
+<style>
+:root{--bg:#0d1117;--panel:#11161d;--card:#161d26;--line:#232f3d;--ink:#e9eef4;--dim:#96a6b6;--faint:#5e7080;
+--pink:#f472b6;--gold:#eab308;--green:#34d399;--sky:#38bdf8;--bad:#f87171}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:Inter,system-ui,sans-serif;font-size:14.5px;line-height:1.55;-webkit-font-smoothing:antialiased}
+a{color:var(--sky)}
+header{display:flex;align-items:center;gap:10px;padding:13px 18px;border-bottom:1px solid var(--line);position:sticky;top:0;background:rgba(13,17,23,.92);backdrop-filter:blur(8px);z-index:50}
+#logo{display:flex;align-items:center;gap:9px;font-weight:800;font-size:17px;letter-spacing:-.01em}
+#logo b{color:var(--pink)}
+.hsp{flex:1}
+.pill{font-size:12px;font-weight:600;border:1px solid var(--line);border-radius:999px;padding:6px 13px;color:var(--dim);background:var(--card);cursor:pointer}
+.pill.pro{background:linear-gradient(90deg,#f472b6,#db2777);color:#2b0716;border:none;font-weight:700}
+.pill.prodone{background:var(--card);color:var(--pink);border:1px solid var(--pink)}
+.tagline{background:linear-gradient(120deg,rgba(244,114,182,.09),rgba(234,179,8,.06));border-bottom:1px solid var(--line);padding:18px 16px;text-align:center}
+.tagline h1{font-family:Fraunces,serif;font-size:clamp(20px,3.4vw,28px)}
+.tagline h1 em{font-style:italic;color:var(--pink)}
+.tagline p{color:var(--dim);font-size:13.5px;margin:6px auto 0;max-width:78ch}
+.flow{display:flex;align-items:stretch;gap:0;max-width:980px;margin:14px auto 0;padding:0 16px}
+.flow .fstep{flex:1;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:11px 13px;text-align:left;display:flex;gap:10px;align-items:flex-start;min-width:0}
+.flow .fn{width:24px;height:24px;border-radius:50%;background:var(--pink);color:#2b0716;font-weight:800;font-size:12.5px;display:grid;place-items:center;flex-shrink:0;margin-top:1px}
+.flow .ft b{display:block;font-size:12.5px;color:var(--ink)}
+.flow .ft span{font-size:11.5px;color:var(--dim);line-height:1.45}
+.flow .farrow{align-self:center;color:var(--faint);font-size:17px;padding:0 7px;flex-shrink:0}
+@media(max-width:700px){.flow{flex-direction:column;gap:6px}.flow .farrow{transform:rotate(90deg);align-self:center;padding:0}}
+#app{display:grid;grid-template-columns:400px 1fr;gap:22px;max-width:1200px;margin:22px auto 60px;padding:0 16px}
+@media(max-width:920px){#app{grid-template-columns:1fr}}
+#inputs{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:18px;height:fit-content}
+.lbl{display:block;font-size:12px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--dim);margin:15px 0 7px}
+.lbl:first-of-type{margin-top:0}
+.tin{width:100%;background:var(--card);border:1px solid var(--line);border-radius:9px;color:var(--ink);padding:10px 12px;font-size:14px;font-family:inherit}
+.tin:focus{outline:none;border-color:var(--pink)}
+textarea.tin{min-height:64px;resize:vertical}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.segrow{display:flex;gap:7px;flex-wrap:wrap}
+.seg{border:1px solid var(--line);background:var(--card);color:var(--dim);border-radius:9px;padding:8px 12px;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit}
+.seg.on{border-color:var(--pink);color:var(--pink);background:rgba(244,114,182,.08)}
+.mini{font-size:11.5px;color:var(--faint);margin-top:4px}
+#runBtn{width:100%;margin-top:18px;border:none;border-radius:11px;padding:13px;font-weight:800;font-size:14.5px;background:var(--pink);color:#2b0716;cursor:pointer;font-family:inherit}
+#runBtn:hover{filter:brightness(1.08)}
+.exbtn{width:100%;border:1px dashed var(--pink);background:rgba(244,114,182,.07);color:var(--pink);border-radius:10px;padding:10px;font-weight:700;font-size:13px;cursor:pointer;margin-bottom:14px;font-family:inherit}
+.exbtn:hover{background:rgba(244,114,182,.14)}
+.exbanner{display:none;background:rgba(52,211,153,.08);border:1px solid rgba(52,211,153,.35);border-radius:10px;padding:9px 12px;font-size:12.5px;color:var(--dim);margin-bottom:14px}
+.exbanner b{color:var(--green)}
+/* brief output */
+.brief{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px 24px}
+.brief .bk{font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--pink)}
+.brief h2{font-family:Fraunces,serif;font-size:23px;margin:3px 0 2px}
+.brief .bsub{font-size:12.5px;color:var(--faint);margin-bottom:14px}
+.brief h4{font-size:11.5px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--pink);margin:16px 0 7px;border-top:1px solid var(--line);padding-top:13px}
+.brief p{font-size:13.5px;color:var(--dim);margin-bottom:8px}
+.brief b{color:var(--ink)}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(118px,1fr));gap:9px;margin:9px 0}
+.kpi{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+.kpi .kl{font-size:9.5px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--faint)}
+.kpi b{display:block;font-family:Fraunces,serif;font-size:18px;margin-top:2px;color:var(--ink)}
+.kpi .kn{font-size:10.5px;color:var(--faint)}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin:4px 0}
+.chip{font-size:12px;font-weight:600;background:var(--panel);border:1px solid var(--line);border-radius:999px;padding:4px 11px;color:var(--ink)}
+.flag{background:rgba(234,179,8,.08);border:1px solid rgba(234,179,8,.35);border-radius:9px;padding:9px 12px;font-size:12.5px;color:var(--dim);margin:6px 0}
+.flag b{color:var(--gold)}
+/* massing */
+.massing{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:12px;text-align:center}
+.massing svg{max-width:100%;height:auto}
+ul.plain{list-style:none;margin:4px 0 8px}
+ul.plain li{position:relative;padding-left:17px;margin-bottom:5px;font-size:13px;color:var(--dim)}
+ul.plain li:before{content:"";position:absolute;left:2px;top:7px;width:6px;height:6px;border-radius:2px;background:var(--pink);transform:rotate(45deg)}
+.lockedsec{background:rgba(234,179,8,.06);border:1px dashed rgba(234,179,8,.4);border-radius:11px;padding:13px 15px;font-size:13px;color:var(--dim);margin:14px 0 0}
+.lockedsec b{color:var(--gold)}
+.lockbtn{display:inline-block;border:none;border-radius:9px;background:var(--gold);color:#221a03;font-weight:700;font-size:12.5px;padding:8px 14px;cursor:pointer;font-family:inherit;text-decoration:none;margin-top:8px}
+.rowbtns{display:flex;gap:9px;flex-wrap:wrap;margin-top:14px}
+.smallbtn{border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:9px;padding:9px 14px;font-size:12.5px;font-weight:600;cursor:pointer;font-family:inherit;text-decoration:none}
+.cta-neso{display:flex;gap:13px;align-items:center;background:linear-gradient(120deg,rgba(244,114,182,.08),rgba(234,179,8,.06));border:1px solid var(--line);border-radius:12px;padding:15px 17px;margin-top:16px;flex-wrap:wrap}
+.cta-neso p{font-size:13px;color:var(--dim);flex:1;min-width:220px}
+.cta-neso b{color:var(--ink)}
+.cta-neso a{background:var(--pink);color:#2b0716;font-weight:700;font-size:13px;border-radius:999px;padding:10px 17px;text-decoration:none}
+footer{border-top:1px solid var(--line);padding:20px 18px;font-size:12px;color:var(--faint);text-align:center;line-height:1.7}
+#modal{position:fixed;inset:0;background:rgba(5,8,12,.7);backdrop-filter:blur(4px);display:none;align-items:center;justify-content:center;z-index:80;padding:18px}
+#modal.on{display:flex}
+#mcard{background:var(--panel);border:1px solid var(--line);border-radius:16px;max-width:460px;width:100%;padding:22px;position:relative;max-height:86vh;overflow:auto}
+#mcard h2{font-family:Fraunces,serif;font-size:20px;margin-bottom:10px}
+.closex{position:absolute;top:10px;right:14px;border:none;background:none;color:var(--dim);font-size:22px;cursor:pointer}
+#toast{position:fixed;left:50%;bottom:22px;transform:translateX(-50%) translateY(90px);background:var(--card);border:1px solid var(--line);color:var(--ink);border-radius:999px;padding:11px 20px;font-size:13.5px;font-weight:600;z-index:90;transition:transform .25s}
+#toast.on{transform:translateX(-50%) translateY(0)}
+.tourhl{outline:2px solid var(--pink);outline-offset:3px;border-radius:10px;transition:outline .2s}
+#tourCard{position:fixed;left:50%;bottom:18px;transform:translateX(-50%) translateY(140%);width:min(440px,92vw);background:var(--card);border:1px solid var(--pink);border-radius:14px;padding:15px 17px;z-index:95;box-shadow:0 18px 50px -12px rgba(0,0,0,.6);transition:transform .3s}
+#tourCard.on{transform:translateX(-50%) translateY(0)}
+#tourCard .tstep{font-size:10.5px;font-weight:700;letter-spacing:.1em;color:var(--pink);text-transform:uppercase}
+#tourCard .ttext{font-size:13.5px;color:var(--ink);margin:5px 0 12px;line-height:1.5}
+#tourCard .tbtns{display:flex;gap:8px;justify-content:flex-end}
+#tourCard .tbtns button{border:1px solid var(--line);background:var(--panel);color:var(--dim);border-radius:8px;padding:7px 14px;font-size:12.5px;font-weight:600;cursor:pointer;font-family:inherit}
+#tourCard .tbtns button.pri{background:var(--pink);border-color:var(--pink);color:#2b0716}
+@media print{
+ header,.tagline,.flow,#inputs,.rowbtns,.lockedsec,.cta-neso,footer,#toast,#modal,#tourCard,.exbtn,.exbanner{display:none!important}
+ body{background:#fff;color:#000}
+ #app{display:block}
+ .brief{border-color:#ccc;background:#fff}
+ .brief h2,.brief b,.kpi b{color:#000}
+ .kpi,.chip,.massing{border-color:#ccc;background:#fff}
+}
+</style>
+</head>
+<body>
+<header>
+  <div id="logo"><svg width="25" height="25" viewBox="0 0 32 32"><path d="M8 24 V14 L16 8 L24 14 V24 H18 V18 H14 V24 Z" fill="none" stroke="#f472b6" stroke-width="2.2" stroke-linejoin="round"/></svg> Build<b>Brief</b></div>
+  <div class="hsp"></div>
+  <button class="pill" id="tourBtn" title="Replay the 60-second tour">&#127891; Tour</button>
+  <button class="pill pro" id="proBtn">Go Pro</button>
+</header>
+
+<div class="tagline">
+  <h1>Get your vision <em>understood.</em></h1>
+  <p>The most expensive phrase in development is &ldquo;that&rsquo;s not what I meant.&rdquo; BuildBrief turns your early-stage housing idea into a professional <b>Development Intent Brief</b> &mdash; the numbers, priorities, and architect-ready language that make the professionals you hire understand your project the first time.</p>
+</div>
+
+<div class="flow" aria-label="How BuildBrief works">
+  <div class="fstep"><div class="fn">1</div><div class="ft"><b>Describe the vision</b><span>Site, project type, who it&rsquo;s for, unit mix, character, and what matters most &mdash; plain answers.</span></div></div>
+  <div class="farrow">&rarr;</div>
+  <div class="fstep"><div class="fn">2</div><div class="ft"><b>Get the brief</b><span>A one-page intent brief: quick numbers, a massing snapshot, priorities, and pro-ready translation.</span></div></div>
+  <div class="farrow">&rarr;</div>
+  <div class="fstep"><div class="fn">3</div><div class="ft"><b>Hand it to your pro</b><span>Architect, GC, or lender reads it in two minutes and starts in the right place &mdash; no lost weeks.</span></div></div>
+</div>
+
+<div id="app">
+  <div id="inputs">
+    <button class="exbtn" id="exBtn">&#9654; Load an example project &mdash; see a finished brief first</button>
+    <div class="exbanner" id="exBanner"><b>Cedar &amp; Vine</b> &mdash; a 12-unit workforce-housing infill on a half-acre corner lot. See how plain answers become a pro-ready brief &mdash; then edit anything; it&rsquo;s yours the moment you type.</div>
+
+    <label class="lbl">Project name</label>
+    <input class="tin" id="pname" placeholder="e.g. Cedar & Vine">
+
+    <label class="lbl">Project type</label>
+    <div class="segrow" id="typeRow"></div>
+
+    <label class="lbl">Site</label>
+    <input class="tin" id="paddr" placeholder="Address or 'still looking'">
+    <div class="two" style="margin-top:10px">
+      <div><input class="tin" id="lotIn" type="number" value="20000" min="0" step="500"><div class="mini">Lot size (SF)</div></div>
+      <div><input class="tin" id="zonIn" placeholder="e.g. R-3 (if known)"><div class="mini">Zoning, if known</div></div>
+    </div>
+
+    <label class="lbl">What stage are you at?</label>
+    <div class="segrow" id="stageRow"></div>
+
+    <label class="lbl">Who is it for?</label>
+    <div class="segrow" id="whoRow"></div>
+
+    <label class="lbl">Unit mix (counts)</label>
+    <div class="two">
+      <div><input class="tin" id="uSt" type="number" value="0" min="0"><div class="mini">Studios</div></div>
+      <div><input class="tin" id="u1" type="number" value="0" min="0"><div class="mini">1-bedroom</div></div>
+    </div>
+    <div class="two" style="margin-top:10px">
+      <div><input class="tin" id="u2" type="number" value="0" min="0"><div class="mini">2-bedroom</div></div>
+      <div><input class="tin" id="u3" type="number" value="0" min="0"><div class="mini">3-bedroom+</div></div>
+    </div>
+
+    <label class="lbl">Stories &amp; parking</label>
+    <div class="two">
+      <div><input class="tin" id="stories" type="number" value="3" min="1" max="12"><div class="mini">Stories</div></div>
+      <div><input class="tin" id="pratio" type="number" value="1" min="0" max="3" step="0.25"><div class="mini">Parking spaces / unit</div></div>
+    </div>
+
+    <label class="lbl">Design character (tap all that fit)</label>
+    <div class="segrow" id="charRow"></div>
+
+    <label class="lbl">Priorities (tap all that matter)</label>
+    <div class="segrow" id="prioRow"></div>
+
+    <label class="lbl">Budget range (total project)</label>
+    <div class="segrow" id="budRow"></div>
+
+    <label class="lbl">Must-haves</label>
+    <textarea class="tin" id="musts" placeholder="e.g. in-unit laundry, ground-floor accessible units, covered parking"></textarea>
+
+    <label class="lbl">Deal-breakers</label>
+    <textarea class="tin" id="nevers" placeholder="e.g. no shared laundry, no flat roofs"></textarea>
+
+    <label class="lbl">The goal, in your own words</label>
+    <textarea class="tin" id="goal" placeholder="What does success look like when this is built?"></textarea>
+
+    <button id="runBtn">Build my brief &rarr;</button>
+    <p class="mini" style="margin-top:10px">A communication document &mdash; not architecture, engineering, or zoning advice. Verify all yields and requirements with your design professional and jurisdiction. Nothing you enter leaves this device.</p>
+  </div>
+
+  <div id="out"><div id="results"></div></div>
+</div>
+
+<footer><span class="np">BuildBrief &middot; a <a href="https://nesoai.github.io/mallory/" target="_blank" rel="noopener">Boundless</a> tool &middot; v1.0 &middot; &copy; 2026 Boundless / Mallory Bailey-Finkley &mdash; all rights reserved &middot; <a href="https://tally.so/r/rj1Z15?source=buildbrief" target="_blank" rel="noopener">Feedback</a> &middot; </span>Educational planning estimates. Works with <a href="https://nesoai.github.io/proforma/">ProForma</a> + <a href="https://nesoai.github.io/birdseye/">Bird&#8217;s Eye</a>.</footer>
+<div id="modal"><div id="mcard"><button class="closex" id="mClose">&times;</button><h2 id="mTitle"></h2><div id="mBody"></div></div></div>
+<div id="toast"></div>
+<div id="tourCard" role="dialog" aria-label="Guided tour">
+  <div class="tstep" id="tourStep"></div>
+  <div class="ttext" id="tourText"></div>
+  <div class="tbtns"><button id="tourSkip">Skip</button><button class="pri" id="tourNext">Next</button></div>
+</div>
+
+<script>
+/* ============ BUILDBRIEF v1.0 ============ */
+const BUY_URL="mailto:nesoai.us@gmail.com?subject="+encodeURIComponent("Requesting BuildBrief Pro ($29)")+"&body="+encodeURIComponent("Hi Boundless — I'd like BuildBrief Pro. Please send my unlock code and how to pay."); // ← swap for Gumroad when live
+const PRICE_TXT="$29 one-time";
+const NESO_CTA="https://tally.so/r/q4MLYg?track=re&services="+encodeURIComponent("Development Feasibility (Standard)")+"&credits=12&source=buildbrief";
+const BIRDSEYE="https://nesoai.github.io/birdseye/";
+
+const $=id=>document.getElementById(id);
+const KEY='buildbrief.v1';
+let S=Object.assign({pro:false},(()=>{try{return JSON.parse(localStorage.getItem(KEY))||{}}catch(e){return{}}})());
+function save(){try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}}
+function toast(t){const x=$('toast');x.textContent=t;x.classList.add('on');clearTimeout(toast.t);toast.t=setTimeout(()=>x.classList.remove('on'),2600)}
+const esc=x=>String(x==null?'':x).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const fk=n=>Math.abs(n)>=1000?(Math.round(n/100)/10)+'k':Math.round(n);
+
+/* ---- selectors ---- */
+const TYPES=[['sfh','&#127968; Single-family'],['du','&#127969; Duplex&ndash;fourplex'],['smf','&#127970; Small multifamily (5&ndash;20)'],['mf','&#127971; Multifamily (20+)'],['mx','&#127978; Mixed-use']];
+const STAGES=[['idea','Just an idea'],['looking','Site hunting'],['contract','Under contract'],['own','Own the site'],['redesign','Rethinking a design']];
+const WHOS=[['fam','Families'],['wf','Workforce'],['sen','Seniors'],['stu','Students'],['lux','Market-rate / premium'],['mixinc','Mixed-income']];
+const CHARS=[['modern','Modern / clean'],['trad','Traditional'],['farm','Farmhouse / craftsman'],['ind','Industrial / loft'],['ctx','Match the neighborhood']];
+const PRIOS=[['afford','Affordability'],['dur','Durability / low maintenance'],['green','Energy efficiency'],['light','Natural light'],['out','Outdoor space'],['acc','Accessibility'],['comm','Community feel'],['speed','Speed to build']];
+const BUDS=[['b1','Under $1M'],['b2','$1&ndash;3M'],['b3','$3&ndash;8M'],['b4','$8&ndash;20M'],['b5','$20M+'],['b0','Not sure yet']];
+let TYPE='smf', STAGE='idea', WHO=new Set(['wf']), CHAR=new Set(['ctx']), PRIO=new Set(['afford','dur']), BUD='b0';
+
+function segInit(rowId,items,get,set,multi){
+  $(rowId).innerHTML=items.map(x=>`<button class="seg ${multi?(get().has(x[0])?'on':''):(x[0]===get()?'on':'')}" data-v="${x[0]}">${x[1]}</button>`).join('');
+  $(rowId).querySelectorAll('.seg').forEach(b=>b.onclick=()=>{
+    if(multi){const s=get();s.has(b.dataset.v)?s.delete(b.dataset.v):s.add(b.dataset.v);
+      $(rowId).querySelectorAll('.seg').forEach(x=>x.classList.toggle('on',s.has(x.dataset.v)));}
+    else{set(b.dataset.v);$(rowId).querySelectorAll('.seg').forEach(x=>x.classList.toggle('on',x===b));}
+    run();});
+}
+segInit('typeRow',TYPES,()=>TYPE,v=>TYPE=v);
+segInit('stageRow',STAGES,()=>STAGE,v=>STAGE=v);
+segInit('whoRow',WHOS,()=>WHO,null,true);
+segInit('charRow',CHARS,()=>CHAR,null,true);
+segInit('prioRow',PRIOS,()=>PRIO,null,true);
+segInit('budRow',BUDS,()=>BUD,v=>BUD=v);
+['pname','paddr','lotIn','zonIn','uSt','u1','u2','u3','stories','pratio','musts','nevers','goal'].forEach(id=>$(id).oninput=()=>run());
+$('runBtn').onclick=()=>{run();const r=$('results');if(r&&r.scrollIntoView)r.scrollIntoView({behavior:'smooth',block:'start'});};
+
+/* ---- model ---- */
+const SIZES={st:520,b1:700,b2:950,b3:1150};
+function compute(){
+  const lot=+$('lotIn').value||0;
+  const u={st:+$('uSt').value||0,b1:+$('u1').value||0,b2:+$('u2').value||0,b3:+$('u3').value||0};
+  const units=u.st+u.b1+u.b2+u.b3;
+  const nrsf=u.st*SIZES.st+u.b1*SIZES.b1+u.b2*SIZES.b2+u.b3*SIZES.b3;
+  const circ=(TYPE==='sfh'||TYPE==='du')?1.05:1.15;
+  const gsf=Math.round(nrsf*circ);
+  const stories=Math.max(1,+$('stories').value||1);
+  const foot=stories?Math.round(gsf/stories):0;
+  const cov=lot?foot/lot:0;
+  const far=lot?gsf/lot:0;
+  const acres=lot/43560;
+  const dua=acres?units/acres:0;
+  const park=Math.ceil(units*(+$('pratio').value||0));
+  const parkSF=park*330; // stall + aisle rough
+  const openSF=Math.max(0,lot-foot-parkSF);
+  return {lot,acres,u,units,nrsf,gsf,stories,foot,cov,far,dua,park,parkSF,openSF};
+}
+function conType(){ // likely construction type
+  const st=+$('stories').value||1;
+  if(TYPE==='sfh'||TYPE==='du') return 'light wood frame (IRC single-family/duplex track)';
+  if(st<=4) return 'Type V wood frame over slab or podium';
+  if(st<=6) return 'Type III/V wood frame, possibly over a concrete podium (5-over-1)';
+  return 'Type I concrete/steel — a step up in cost class';
+}
+const lbl=(arr,set)=>arr.filter(a=>set.has(a[0])).map(a=>a[1].replace(/&#\d+;\s*/,'')).join(', ');
+
+/* ---- render ---- */
+function run(){
+  const R=compute();
+  const out=$('results');
+  const nm=($('pname').value||'').trim()||'Untitled project';
+  if(!R.units){out.innerHTML='<div class="brief"><div class="bk">Development Intent Brief</div><h2>'+esc(nm)+'</h2><p style="margin-top:8px">Add your unit mix on the left &mdash; or load the example &mdash; and the brief writes itself here, ready to print and hand to your architect, GC, or lender.</p></div>';return;}
+
+  const typeName={sfh:'single-family',du:'duplex&ndash;fourplex',smf:'small multifamily',mf:'multifamily',mx:'mixed-use'}[TYPE];
+  const stageName={idea:'concept stage',looking:'site selection',contract:'site under contract',own:'site owned',redesign:'design revision'}[STAGE];
+  const whoTxt=lbl(WHOS,WHO)||'general market';
+  const charTxt=lbl(CHARS,CHAR)||'contextual';
+  const prioTxt=lbl(PRIOS,PRIO);
+  const budTxt={b1:'under $1M',b2:'$1&ndash;3M',b3:'$3&ndash;8M',b4:'$8&ndash;20M',b5:'$20M+',b0:'to be established'}[BUD];
+  const mixParts=[];
+  if(R.u.st)mixParts.push(R.u.st+' studio'+(R.u.st>1?'s':''));
+  if(R.u.b1)mixParts.push(R.u.b1+' one-bed');
+  if(R.u.b2)mixParts.push(R.u.b2+' two-bed');
+  if(R.u.b3)mixParts.push(R.u.b3+' three-bed+');
+  const mixTxt=mixParts.join(', ');
+
+  /* flags */
+  const flags=[];
+  if(R.cov>0.6) flags.push('<b>Coverage check:</b> the footprint covers ~'+Math.round(R.cov*100)+'% of the lot before parking and setbacks — many codes cap coverage at 40–60%. Expect the architect to push stories up or unit count down.');
+  if(R.dua>30 && (TYPE==='sfh'||TYPE==='du')) flags.push('<b>Density vs. type:</b> ~'+Math.round(R.dua)+' units/acre is multifamily-scale density on a single-family/duplex project type — the type or the count likely needs to move.');
+  if(R.parkSF>R.lot*0.5 && R.park>0) flags.push('<b>Parking reality:</b> '+R.park+' surface stalls need ~'+fk(R.parkSF)+' SF — over half the lot. Structured/tuck-under parking or a lower ratio may be the real conversation.');
+  if((+$('stories').value||1)>=5) flags.push('<b>Construction class:</b> at '+$('stories').value+' stories the likely structure is '+conType()+' — a cost-class jump worth pricing before falling in love with the height.');
+  if(!$('zonIn').value.trim()) flags.push('<b>Zoning unknown:</b> the single fastest de-risk is a zoning read — what&rsquo;s allowed by right, and what needs relief. (Bird&rsquo;s Eye does this in two business days.)');
+
+  /* massing svg */
+  const W=340,H=200,pad=18;
+  const lotRatio=Math.min(1,R.lot? (R.foot+R.parkSF)/R.lot :0);
+  const lotW=W-pad*2, lotH=H-pad*2;
+  const bldgW=Math.max(24,Math.sqrt(Math.max(0.02,R.foot/(R.lot||1)))*lotW);
+  const bldgH=Math.max(20,Math.sqrt(Math.max(0.02,R.foot/(R.lot||1)))*lotH*0.9);
+  const pW=Math.max(0,Math.min(lotW-bldgW-14,Math.sqrt(Math.max(0,R.parkSF/(R.lot||1)))*lotW));
+  const massing=`<svg viewBox="0 0 ${W} ${H+34}" xmlns="http://www.w3.org/2000/svg">
+    <rect x="${pad}" y="${pad}" width="${lotW}" height="${lotH}" fill="none" stroke="#3a4757" stroke-dasharray="5 4" rx="4"/>
+    <rect x="${pad+10}" y="${pad+10}" width="${bldgW}" height="${bldgH}" fill="rgba(244,114,182,.18)" stroke="#f472b6" stroke-width="1.5" rx="3"/>
+    <text x="${pad+10+bldgW/2}" y="${pad+10+bldgH/2+4}" fill="#f4a9cf" font-size="11" text-anchor="middle" font-family="Inter">${R.stories} stories</text>
+    ${pW>12?`<rect x="${pad+lotW-pW-10}" y="${pad+lotH-Math.min(56,lotH*0.4)-10}" width="${pW}" height="${Math.min(56,lotH*0.4)}" fill="rgba(234,179,8,.12)" stroke="#eab308" stroke-width="1" rx="3"/><text x="${pad+lotW-pW/2-10}" y="${pad+lotH-Math.min(56,lotH*0.4)/2-4}" fill="#d9b44a" font-size="9.5" text-anchor="middle" font-family="Inter">parking</text>`:''}
+    <text x="${pad}" y="${H+18}" fill="#5e7080" font-size="10" font-family="Inter">Lot ${fk(R.lot)} SF &middot; footprint ~${fk(R.foot)} SF (${Math.round(R.cov*100)}% coverage) &middot; open ~${fk(R.openSF)} SF</text>
+    <text x="${pad}" y="${H+31}" fill="#5e7080" font-size="10" font-family="Inter">Proportions are diagrammatic — not a site plan.</text>
+  </svg>`;
+
+  /* pro translation */
+  const proLines=[
+    `Program: ${R.units} units (${mixTxt}); ~${fk(R.nrsf)} SF net residential, ~${fk(R.gsf)} SF gross at ${Math.round((R.gsf/R.nrsf-1)*100)}% circulation.`,
+    `Massing intent: ${R.stories} stories; footprint ~${fk(R.foot)} SF; FAR ~${R.far.toFixed(2)}; ~${R.dua?Math.round(R.dua):'—'} units/acre.`,
+    `Parking: ${R.park} spaces (${(+$('pratio').value||0)} per unit) — confirm against local minimums or reductions.`,
+    `Likely construction: ${conType()}.`,
+    `Character direction: ${charTxt}. Priorities to design around: ${prioTxt||'to be discussed'}.`,
+    `Budget frame: ${budTxt}. Stage: ${stageName}.`
+  ];
+  const openQs=[
+    'What does the zoning actually allow by right here — and what needs relief?',
+    'Does the unit mix match what the market/lender wants, or should it shift?',
+    'Where should cost flex first if bids come in high — finishes, parking, or unit count?',
+    (PRIO.has('green')?'Which efficiency measures pay back vs. which are brand?':'What building systems fit the maintenance budget?'),
+    'What approvals path and timeline should we plan around?'
+  ];
+  const docList=['Site survey or plat (if you have it)','Any zoning letters, listings, or prior studies','Photos of the site and neighbors','Comparable projects you like (photos/links)','This brief + your budget frame','Pre-qualification or proof of funds, if lender conversations are near'];
+
+  const summary=`<b>${esc(nm)}</b> is a proposed <b>${typeName}</b> project${$('paddr').value?(' at <b>'+esc($('paddr').value)+'</b>'):''}, currently at <b>${stageName}</b>. The vision: <b>${R.units} homes</b> (${mixTxt}) serving <b>${whoTxt}</b>, in a <b>${charTxt}</b> character, on a ${fk(R.lot)} SF lot${$('zonIn').value?(' zoned '+esc($('zonIn').value)):''}. Top priorities: <b>${prioTxt||'to be defined'}</b>. Budget frame: <b>${budTxt}</b>.`;
+
+  const goalBlock=$('goal').value.trim()?`<h4>The goal, in the owner&rsquo;s words</h4><p style="font-family:Fraunces,serif;font-style:italic;font-size:14.5px;color:var(--ink)">&ldquo;${esc($('goal').value.trim())}&rdquo;</p>`:'';
+  const mustBlock=($('musts').value.trim()||$('nevers').value.trim())?`<h4>Must-haves &amp; deal-breakers</h4>${$('musts').value.trim()?('<p><b>Must have:</b> '+esc($('musts').value.trim())+'</p>'):''}${$('nevers').value.trim()?('<p><b>Never:</b> '+esc($('nevers').value.trim())+'</p>'):''}`:'';
+
+  const proSection = S.pro ? `
+    <h4>Say it like a pro &mdash; hand this to your architect</h4>
+    <ul class="plain">${proLines.map(l=>'<li>'+l+'</li>').join('')}</ul>
+    <h4>Five questions to ask in the first meeting</h4>
+    <ul class="plain">${openQs.map(l=>'<li>'+l+'</li>').join('')}</ul>
+    <h4>What to bring</h4>
+    <div class="chips">${docList.map(d=>'<span class="chip">'+d+'</span>').join('')}</div>`
+    : `<div class="lockedsec"><b>&#128274; The pro-translation layer is Pro:</b> your program restated in architect language (FAR, construction type, circulation factors), the five questions to ask in the first meeting, and the bring-with-you checklist &mdash; plus the print-ready brief. <button class="lockbtn" onclick="openPro()">Unlock &mdash; ${PRICE_TXT}</button></div>`;
+
+  out.innerHTML=`<div class="brief">
+    <div class="bk">Development Intent Brief</div>
+    <h2>${esc(nm)}</h2>
+    <div class="bsub">Prepared with BuildBrief &middot; ${new Date().toLocaleDateString('en-US',{month:'long',day:'numeric',year:'numeric'})} &middot; SAMPLE-quality yields — verify with your design professional</div>
+    <p>${summary}</p>
+    <div class="kpis">
+      <div class="kpi"><div class="kl">Homes</div><b>${R.units}</b><div class="kn">${mixTxt}</div></div>
+      <div class="kpi"><div class="kl">Gross area</div><b>~${fk(R.gsf)} SF</b><div class="kn">incl. circulation</div></div>
+      <div class="kpi"><div class="kl">Density</div><b>${R.dua?Math.round(R.dua):'—'}</b><div class="kn">units / acre</div></div>
+      <div class="kpi"><div class="kl">FAR</div><b>${R.far?R.far.toFixed(2):'—'}</b><div class="kn">gross / lot</div></div>
+      <div class="kpi"><div class="kl">Parking</div><b>${R.park}</b><div class="kn">spaces planned</div></div>
+    </div>
+    <h4>Massing snapshot</h4>
+    <div class="massing">${massing}</div>
+    ${flags.length?('<h4>Reality checks before the first meeting</h4>'+flags.map(f=>'<div class="flag">'+f+'</div>').join('')):''}
+    ${goalBlock}
+    ${mustBlock}
+    ${proSection}
+  </div>
+  <div class="rowbtns">
+    <button class="smallbtn" id="printBtn">&#128424; Print / save the brief ${S.pro?'':'&#128274;'}</button>
+    <button class="smallbtn" onclick="copyBrief()">&#128203; Copy as text</button>
+    <a class="smallbtn" href="${BIRDSEYE}" target="_blank" rel="noopener">&#129413; Get the zoning read (Bird&rsquo;s Eye)</a>
+  </div>
+  <div class="cta-neso"><p><b>Want senior eyes before you commit?</b> NESO&rsquo;s feasibility practice pressure-tests the program, the zoning path, and the numbers &mdash; run by planners and developers who&rsquo;ve carried projects like this through approval.</p><a href="${NESO_CTA}" target="_blank" rel="noopener">Have NESO review it &rarr;</a></div>`;
+
+  $('printBtn').onclick=()=>{ if(!S.pro) return openPro('The print-ready brief is a Pro feature:'); window.print(); };
+}
+function copyBrief(){
+  const t=document.querySelector('.brief'); if(!t)return;
+  navigator.clipboard&&navigator.clipboard.writeText(t.innerText).then(()=>toast('Brief copied as text'),()=>toast('Select and copy manually'));
+}
+
+/* ============ EXAMPLE ============ */
+function loadExample(){
+  $('pname').value='Cedar & Vine';
+  $('paddr').value='412 Cedar Street (corner lot)';
+  $('lotIn').value=21800; $('zonIn').value='R-3 (assumed)';
+  TYPE='smf'; STAGE='contract'; WHO=new Set(['wf','fam']); CHAR=new Set(['modern','ctx']); PRIO=new Set(['afford','dur','green']); BUD='b3';
+  [['typeRow',TYPE],['stageRow',STAGE],['budRow',BUD]].forEach(([r,v])=>$(r).querySelectorAll('.seg').forEach(x=>x.classList.toggle('on',x.dataset.v===v)));
+  $('whoRow').querySelectorAll('.seg').forEach(x=>x.classList.toggle('on',WHO.has(x.dataset.v)));
+  $('charRow').querySelectorAll('.seg').forEach(x=>x.classList.toggle('on',CHAR.has(x.dataset.v)));
+  $('prioRow').querySelectorAll('.seg').forEach(x=>x.classList.toggle('on',PRIO.has(x.dataset.v)));
+  $('uSt').value=0; $('u1').value=4; $('u2').value=6; $('u3').value=2;
+  $('stories').value=3; $('pratio').value=1;
+  $('musts').value='In-unit laundry; two ground-floor accessible units; durable exterior (fiber cement or brick)';
+  $('nevers').value='No basement units; no shared laundry';
+  $('goal').value='Twelve well-built homes working families can actually afford, on a corner the neighborhood is proud of — and a project a local lender will bank.';
+  run();
+  $('exBanner').style.display='block';
+  toast('Example loaded \u2014 edit anything, it\u2019s yours now');
+  try{ if(typeof gtag==='function') gtag('event','example_load',{tool:'buildbrief'}); }catch(e){}
+}
+$('exBtn').onclick=loadExample;
+
+/* ============ PRO ============ */
+const REDEEM_URL='https://neso-pro.nesoai-us.workers.dev/redeem';
+async function redeemCode(c){
+  c=(c||'').trim().toUpperCase();
+  if(!/^BLD-[A-Z0-9]{4}-[A-Z0-9]{4}$/.test(c)) return {ok:false,msg:'That code doesn\u2019t look right'};
+  try{
+    const r=await fetch(REDEEM_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({tool:'buildbrief',code:c})});
+    const j=await r.json();
+    if(j.ok) return {ok:true};
+    if(j.reason==='used') return {ok:false,msg:'That code has already been used'};
+    return {ok:false,msg:'That code doesn\u2019t look right'};
+  }catch(e){ return {ok:false,msg:'Couldn\u2019t reach the unlock server \u2014 check your connection and try again'}; }
+}
+function openModal(t,b){$('mTitle').textContent=t;$('mBody').innerHTML=b;$('modal').classList.add('on');}
+$('mClose').onclick=()=>$('modal').classList.remove('on');
+$('modal').onclick=e=>{if(e.target.id==='modal')$('modal').classList.remove('on');};
+function openPro(msg){
+  openModal('BuildBrief Pro',`<p>${msg||'One unlock, yours forever on this device:'}</p>
+   <ul style="color:var(--dim);font-size:13.5px;line-height:1.9;padding-left:18px;margin:8px 0 14px">
+     <li>The pro-translation layer &mdash; your program in architect language</li>
+     <li>Five first-meeting questions + the bring-with-you checklist</li>
+     <li>Print-ready brief to hand across the table</li></ul>
+   <a class="lockbtn" href="${BUY_URL}" target="_blank" rel="noopener">Request Pro &mdash; ${PRICE_TXT} &rarr;</a>
+   <div style="display:flex;gap:8px;align-items:center;margin-top:14px">
+     <input class="tin" id="codeIn" placeholder="BLD-XXXX-XXXX" style="flex:1">
+     <button class="lockbtn" id="applyCode" style="background:var(--green);color:#04211a;margin:0">Apply</button></div>`);
+  $('applyCode').onclick=async()=>{const b=$('applyCode');b.disabled=true;b.textContent='\u2026';
+    const r=await redeemCode($('codeIn').value);b.disabled=false;b.textContent='Apply';
+    if(r.ok){S.pro=true;save();proUI();$('modal').classList.remove('on');toast('\ud83c\udf89 Pro unlocked');run();}
+    else toast(r.msg);};
+}
+function proUI(){$('proBtn').textContent=S.pro?'\u2713 Pro':'Go Pro';$('proBtn').className='pill '+(S.pro?'prodone':'pro');}
+$('proBtn').onclick=()=>S.pro?toast('Pro is active on this device \u2713'):openPro();
+
+/* ============ TOUR ============ */
+const TOUR=[
+ ['typeRow','Step 1 of 5','Start with <b>the shape of the project</b> \u2014 type, site, and stage. The brief adapts its language and reality-checks to what you pick.'],
+ ['whoRow','Step 2 of 5','<b>Who it\u2019s for drives everything</b> \u2014 unit sizes, finishes, parking, even financing. Naming your resident first is what pros wish every owner did.'],
+ ['prioRow','Step 3 of 5','<b>Priorities are the trade-off map.</b> When budget pressure comes (it will), this list tells your architect what to protect and what can flex.'],
+ ['out','Step 4 of 5','The <b>brief writes itself</b> \u2014 quick numbers, a massing snapshot, reality checks, and (in Pro) your vision restated in architect language.'],
+ ['exBtn','Step 5 of 5','Fastest way to learn it: <b>load the example</b> and reshape it into your project. Nothing is saved anywhere but this device.']
+];
+let tourI=-1;
+function tourClear(){document.querySelectorAll('.tourhl').forEach(e=>e.classList.remove('tourhl'));}
+function tourShow(i){
+  tourClear();
+  if(i>=TOUR.length){ $('tourCard').classList.remove('on'); try{localStorage.setItem('buildbrief.tour','done')}catch(e){}; return; }
+  tourI=i; const [id,st,tx]=TOUR[i];
+  const el=$(id); if(el){ el.classList.add('tourhl'); el.scrollIntoView({behavior:'smooth',block:'center'}); }
+  $('tourStep').textContent=st; $('tourText').innerHTML=tx;
+  $('tourNext').textContent = i===TOUR.length-1 ? 'Done' : 'Next';
+  $('tourCard').classList.add('on');
+}
+$('tourNext').onclick=()=>tourShow(tourI+1);
+$('tourSkip').onclick=()=>tourShow(TOUR.length);
+$('tourBtn').onclick=()=>tourShow(0);
+setTimeout(()=>{ try{ if(!localStorage.getItem('buildbrief.tour')) tourShow(0); }catch(e){} },1100);
+
+proUI(); run();
+</script>
+</body></html>
