@@ -3,9 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BuildBrief — get your vision understood</title>
-<meta name="description" content="BuildBrief turns an early-stage housing idea into a professional Development Intent Brief — the numbers, priorities, and pro-ready language that make architects, GCs, and lenders understand your project the first time. Free, in your browser.">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230d1117'/%3E%3Cpath d='M8 24 V14 L16 8 L24 14 V24 H18 V18 H14 V24 Z' fill='none' stroke='%23f472b6' stroke-width='2.2' stroke-linejoin='round'/%3E%3C/svg%3E">
+<title>SiteShaper — from lot to scheme book</title>
+<meta name="description" content="SiteShaper turns a lot and a program into a schematic scheme book: site plan with setbacks, auto-generated floor plates, MEP location markers for single-family, and the numbers table — ready for your architect to review and build from.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230d1117'/%3E%3Crect x='6' y='6' width='20' height='20' fill='none' stroke='%2360a5fa' stroke-width='2' stroke-dasharray='3 2'/%3E%3Crect x='10' y='12' width='12' height='10' fill='rgba(96,165,250,.25)' stroke='%2360a5fa' stroke-width='1.6'/%3E%3C/svg%3E">
 <meta name="theme-color" content="#0d1117">
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <script>
@@ -14,192 +14,224 @@ if(GA_ID){const s=document.createElement('script');s.async=true;s.src='https://w
 </script>
 <style>
 :root{--bg:#0d1117;--panel:#11161d;--card:#161d26;--line:#232f3d;--ink:#e9eef4;--dim:#96a6b6;--faint:#5e7080;
---pink:#f472b6;--gold:#eab308;--green:#34d399;--sky:#38bdf8;--bad:#f87171}
+--blue:#60a5fa;--blue-d:#3b82f6;--gold:#eab308;--green:#34d399;--teal:#2dd4bf;--bad:#f87171;--sky:#38bdf8}
 *{margin:0;padding:0;box-sizing:border-box}
 body{background:var(--bg);color:var(--ink);font-family:Inter,system-ui,sans-serif;font-size:14.5px;line-height:1.55;-webkit-font-smoothing:antialiased}
 a{color:var(--sky)}
 header{display:flex;align-items:center;gap:10px;padding:13px 18px;border-bottom:1px solid var(--line);position:sticky;top:0;background:rgba(13,17,23,.92);backdrop-filter:blur(8px);z-index:50}
 #logo{display:flex;align-items:center;gap:9px;font-weight:800;font-size:17px;letter-spacing:-.01em}
-#logo b{color:var(--pink)}
+#logo b{color:var(--blue)}
 .hsp{flex:1}
 .pill{font-size:12px;font-weight:600;border:1px solid var(--line);border-radius:999px;padding:6px 13px;color:var(--dim);background:var(--card);cursor:pointer}
-.pill.pro{background:linear-gradient(90deg,#f472b6,#db2777);color:#2b0716;border:none;font-weight:700}
-.pill.prodone{background:var(--card);color:var(--pink);border:1px solid var(--pink)}
-.tagline{background:linear-gradient(120deg,rgba(244,114,182,.09),rgba(234,179,8,.06));border-bottom:1px solid var(--line);padding:18px 16px;text-align:center}
+.pill.pro{background:linear-gradient(90deg,#60a5fa,#3b82f6);color:#081226;border:none;font-weight:700}
+.pill.prodone{background:var(--card);color:var(--blue);border:1px solid var(--blue)}
+.tagline{background:linear-gradient(120deg,rgba(96,165,250,.09),rgba(45,212,191,.06));border-bottom:1px solid var(--line);padding:18px 16px;text-align:center}
 .tagline h1{font-family:Fraunces,serif;font-size:clamp(20px,3.4vw,28px)}
-.tagline h1 em{font-style:italic;color:var(--pink)}
-.tagline p{color:var(--dim);font-size:13.5px;margin:6px auto 0;max-width:78ch}
+.tagline h1 em{font-style:italic;color:var(--blue)}
+.tagline p{color:var(--dim);font-size:13.5px;margin:6px auto 0;max-width:80ch}
 .flow{display:flex;align-items:stretch;gap:0;max-width:980px;margin:14px auto 0;padding:0 16px}
-.flow .fstep{flex:1;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:11px 13px;text-align:left;display:flex;gap:10px;align-items:flex-start;min-width:0}
-.flow .fn{width:24px;height:24px;border-radius:50%;background:var(--pink);color:#2b0716;font-weight:800;font-size:12.5px;display:grid;place-items:center;flex-shrink:0;margin-top:1px}
+.flow .fstep{flex:1;background:linear-gradient(140deg,rgba(96,165,250,.14),var(--card) 55%);border:1px solid rgba(96,165,250,.35);border-radius:12px;padding:11px 13px;text-align:left;display:flex;gap:10px;align-items:flex-start;min-width:0}
+.flow .fn{width:24px;height:24px;border-radius:50%;background:var(--blue);color:#081226;font-weight:800;font-size:12.5px;display:grid;place-items:center;flex-shrink:0;margin-top:1px}
 .flow .ft b{display:block;font-size:12.5px;color:var(--ink)}
 .flow .ft span{font-size:11.5px;color:var(--dim);line-height:1.45}
 .flow .farrow{align-self:center;color:var(--faint);font-size:17px;padding:0 7px;flex-shrink:0}
 @media(max-width:700px){.flow{flex-direction:column;gap:6px}.flow .farrow{transform:rotate(90deg);align-self:center;padding:0}}
-#app{display:grid;grid-template-columns:400px 1fr;gap:22px;max-width:1200px;margin:22px auto 60px;padding:0 16px}
-@media(max-width:920px){#app{grid-template-columns:1fr}}
+#app{display:grid;grid-template-columns:400px 1fr;gap:22px;max-width:1240px;margin:22px auto 60px;padding:0 16px}
+@media(max-width:940px){#app{grid-template-columns:1fr}}
 #inputs{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:18px;height:fit-content}
 .lbl{display:block;font-size:12px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--dim);margin:15px 0 7px}
 .lbl:first-of-type{margin-top:0}
 .tin{width:100%;background:var(--card);border:1px solid var(--line);border-radius:9px;color:var(--ink);padding:10px 12px;font-size:14px;font-family:inherit}
-.tin:focus{outline:none;border-color:var(--pink)}
-textarea.tin{min-height:64px;resize:vertical}
+.tin:focus{outline:none;border-color:var(--blue)}
 .two{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.three{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
 .segrow{display:flex;gap:7px;flex-wrap:wrap}
 .seg{border:1px solid var(--line);background:var(--card);color:var(--dim);border-radius:9px;padding:8px 12px;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit}
-.seg.on{border-color:var(--pink);color:var(--pink);background:rgba(244,114,182,.08)}
+.seg.on{border-color:var(--blue);color:var(--blue);background:rgba(96,165,250,.08)}
 .mini{font-size:11.5px;color:var(--faint);margin-top:4px}
-#runBtn{width:100%;margin-top:18px;border:none;border-radius:11px;padding:13px;font-weight:800;font-size:14.5px;background:var(--pink);color:#2b0716;cursor:pointer;font-family:inherit}
+#runBtn{width:100%;margin-top:18px;border:none;border-radius:11px;padding:13px;font-weight:800;font-size:14.5px;background:var(--blue);color:#081226;cursor:pointer;font-family:inherit}
 #runBtn:hover{filter:brightness(1.08)}
-.exbtn{width:100%;border:1px dashed var(--pink);background:rgba(244,114,182,.07);color:var(--pink);border-radius:10px;padding:10px;font-weight:700;font-size:13px;cursor:pointer;margin-bottom:14px;font-family:inherit}
-.exbtn:hover{background:rgba(244,114,182,.14)}
+.exbtn{width:100%;border:1px dashed var(--blue);background:rgba(96,165,250,.07);color:var(--blue);border-radius:10px;padding:10px;font-weight:700;font-size:13px;cursor:pointer;margin-bottom:14px;font-family:inherit}
+.exbtn:hover{background:rgba(96,165,250,.14)}
 .exbanner{display:none;background:rgba(52,211,153,.08);border:1px solid rgba(52,211,153,.35);border-radius:10px;padding:9px 12px;font-size:12.5px;color:var(--dim);margin-bottom:14px}
 .exbanner b{color:var(--green)}
-/* brief output */
-.brief{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px 24px}
-.brief .bk{font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--pink)}
-.brief h2{font-family:Fraunces,serif;font-size:23px;margin:3px 0 2px}
-.brief .bsub{font-size:12.5px;color:var(--faint);margin-bottom:14px}
-.brief h4{font-size:11.5px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--pink);margin:16px 0 7px;border-top:1px solid var(--line);padding-top:13px}
-.brief p{font-size:13.5px;color:var(--dim);margin-bottom:8px}
-.brief b{color:var(--ink)}
-.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(118px,1fr));gap:9px;margin:9px 0}
-.kpi{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:10px 12px}
-.kpi .kl{font-size:9.5px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--faint)}
-.kpi b{display:block;font-family:Fraunces,serif;font-size:18px;margin-top:2px;color:var(--ink)}
-.kpi .kn{font-size:10.5px;color:var(--faint)}
-.chips{display:flex;flex-wrap:wrap;gap:6px;margin:4px 0}
-.chip{font-size:12px;font-weight:600;background:var(--panel);border:1px solid var(--line);border-radius:999px;padding:4px 11px;color:var(--ink)}
-.flag{background:rgba(234,179,8,.08);border:1px solid rgba(234,179,8,.35);border-radius:9px;padding:9px 12px;font-size:12.5px;color:var(--dim);margin:6px 0}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin-bottom:16px}
+.card h4{font-size:12px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--blue);margin-bottom:11px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.card h4 .sub{font-size:10.5px;color:var(--faint);text-transform:none;letter-spacing:0;font-weight:500}
+.planwrap{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:10px;overflow:auto;position:relative}
+.planwrap svg{display:block;max-width:100%;height:auto;margin:0 auto}
+.flag{background:rgba(234,179,8,.08);border:1px solid rgba(234,179,8,.35);border-radius:9px;padding:9px 12px;font-size:12.5px;color:var(--dim);margin:8px 0 0}
 .flag b{color:var(--gold)}
-/* massing */
-.massing{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:12px;text-align:center}
-.massing svg{max-width:100%;height:auto}
-ul.plain{list-style:none;margin:4px 0 8px}
-ul.plain li{position:relative;padding-left:17px;margin-bottom:5px;font-size:13px;color:var(--dim)}
-ul.plain li:before{content:"";position:absolute;left:2px;top:7px;width:6px;height:6px;border-radius:2px;background:var(--pink);transform:rotate(45deg)}
-.lockedsec{background:rgba(234,179,8,.06);border:1px dashed rgba(234,179,8,.4);border-radius:11px;padding:13px 15px;font-size:13px;color:var(--dim);margin:14px 0 0}
-.lockedsec b{color:var(--gold)}
-.lockbtn{display:inline-block;border:none;border-radius:9px;background:var(--gold);color:#221a03;font-weight:700;font-size:12.5px;padding:8px 14px;cursor:pointer;font-family:inherit;text-decoration:none;margin-top:8px}
-.rowbtns{display:flex;gap:9px;flex-wrap:wrap;margin-top:14px}
+.flag.err{background:rgba(248,113,113,.08);border-color:rgba(248,113,113,.4)}
+.flag.err b{color:var(--bad)}
+table{width:100%;border-collapse:collapse;font-size:12.5px}
+th,td{text-align:left;padding:7px 9px;border-bottom:1px solid var(--line)}
+td:last-child{text-align:right;font-weight:600}
+th{font-size:10.5px;text-transform:uppercase;letter-spacing:.06em;color:var(--faint);font-weight:700}
+.lockover{position:absolute;inset:0;background:rgba(13,17,23,.72);backdrop-filter:blur(4px);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;border-radius:10px;z-index:5;text-align:center;padding:20px}
+.lockover b{color:var(--gold);font-size:14px}
+.lockover span{color:var(--dim);font-size:12.5px;max-width:40ch}
+.lockbtn{display:inline-block;border:none;border-radius:9px;background:var(--gold);color:#221a03;font-weight:700;font-size:12.5px;padding:9px 15px;cursor:pointer;font-family:inherit;text-decoration:none}
+.wm{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;pointer-events:none;z-index:4}
+.wm span{transform:rotate(-24deg);font-family:Fraunces,serif;font-size:34px;color:rgba(150,166,182,.16);font-weight:700;letter-spacing:.08em;white-space:nowrap}
+.edtb{display:flex;gap:7px;flex-wrap:wrap;margin:0 0 9px}
+.edtb button{border:1px solid var(--line);background:var(--panel);color:var(--ink);border-radius:8px;padding:7px 12px;font-size:12px;font-weight:600;cursor:pointer;font-family:inherit}
+.edtb button:hover{border-color:var(--blue)}
+.edtb button.warn{color:var(--bad)}
+.edtb button.pri{background:var(--blue);border-color:var(--blue);color:#081226;font-weight:700}
+.edhint{font-size:11.5px;color:var(--faint);margin-top:8px}
+.room-sel{cursor:move}
+.mep-legend{display:flex;flex-wrap:wrap;gap:8px 16px;font-size:11.5px;color:var(--dim);margin-top:9px}
+.mep-legend span{display:inline-flex;align-items:center;gap:6px}
+.rowbtns{display:flex;gap:9px;flex-wrap:wrap;margin-top:4px}
 .smallbtn{border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:9px;padding:9px 14px;font-size:12.5px;font-weight:600;cursor:pointer;font-family:inherit;text-decoration:none}
-.cta-neso{display:flex;gap:13px;align-items:center;background:linear-gradient(120deg,rgba(244,114,182,.08),rgba(234,179,8,.06));border:1px solid var(--line);border-radius:12px;padding:15px 17px;margin-top:16px;flex-wrap:wrap}
+.togglerow{display:flex;gap:8px;align-items:center;margin-bottom:10px;flex-wrap:wrap}
+.tgl{border:1px solid var(--line);background:var(--panel);color:var(--dim);border-radius:999px;padding:6px 13px;font-size:12px;font-weight:700;cursor:pointer;font-family:inherit}
+.tgl.on{border-color:var(--teal);color:var(--teal);background:rgba(45,212,191,.08)}
+.cta-neso{display:flex;gap:13px;align-items:center;background:linear-gradient(120deg,rgba(96,165,250,.08),rgba(45,212,191,.06));border:1px solid var(--line);border-radius:12px;padding:15px 17px;margin-top:16px;flex-wrap:wrap}
 .cta-neso p{font-size:13px;color:var(--dim);flex:1;min-width:220px}
 .cta-neso b{color:var(--ink)}
-.cta-neso a{background:var(--pink);color:#2b0716;font-weight:700;font-size:13px;border-radius:999px;padding:10px 17px;text-decoration:none}
+.cta-neso a{background:var(--blue);color:#081226;font-weight:700;font-size:13px;border-radius:999px;padding:10px 17px;text-decoration:none}
 footer{border-top:1px solid var(--line);padding:20px 18px;font-size:12px;color:var(--faint);text-align:center;line-height:1.7}
 #modal{position:fixed;inset:0;background:rgba(5,8,12,.7);backdrop-filter:blur(4px);display:none;align-items:center;justify-content:center;z-index:80;padding:18px}
 #modal.on{display:flex}
-#mcard{background:var(--panel);border:1px solid var(--line);border-radius:16px;max-width:460px;width:100%;padding:22px;position:relative;max-height:86vh;overflow:auto}
+#mcard{background:var(--panel);border:1px solid var(--line);border-radius:16px;max-width:470px;width:100%;padding:22px;position:relative;max-height:86vh;overflow:auto}
 #mcard h2{font-family:Fraunces,serif;font-size:20px;margin-bottom:10px}
 .closex{position:absolute;top:10px;right:14px;border:none;background:none;color:var(--dim);font-size:22px;cursor:pointer}
 #toast{position:fixed;left:50%;bottom:22px;transform:translateX(-50%) translateY(90px);background:var(--card);border:1px solid var(--line);color:var(--ink);border-radius:999px;padding:11px 20px;font-size:13.5px;font-weight:600;z-index:90;transition:transform .25s}
 #toast.on{transform:translateX(-50%) translateY(0)}
-.tourhl{outline:2px solid var(--pink);outline-offset:3px;border-radius:10px;transition:outline .2s}
-#tourCard{position:fixed;left:50%;bottom:18px;transform:translateX(-50%) translateY(140%);width:min(440px,92vw);background:var(--card);border:1px solid var(--pink);border-radius:14px;padding:15px 17px;z-index:95;box-shadow:0 18px 50px -12px rgba(0,0,0,.6);transition:transform .3s}
+.tourhl{outline:2px solid var(--blue);outline-offset:3px;border-radius:10px;transition:outline .2s}
+#tourCard{position:fixed;left:50%;bottom:18px;transform:translateX(-50%) translateY(140%);width:min(440px,92vw);background:var(--card);border:1px solid var(--blue);border-radius:14px;padding:15px 17px;z-index:95;box-shadow:0 18px 50px -12px rgba(0,0,0,.6);transition:transform .3s}
 #tourCard.on{transform:translateX(-50%) translateY(0)}
-#tourCard .tstep{font-size:10.5px;font-weight:700;letter-spacing:.1em;color:var(--pink);text-transform:uppercase}
+#tourCard .tstep{font-size:10.5px;font-weight:700;letter-spacing:.1em;color:var(--blue);text-transform:uppercase}
 #tourCard .ttext{font-size:13.5px;color:var(--ink);margin:5px 0 12px;line-height:1.5}
 #tourCard .tbtns{display:flex;gap:8px;justify-content:flex-end}
 #tourCard .tbtns button{border:1px solid var(--line);background:var(--panel);color:var(--dim);border-radius:8px;padding:7px 14px;font-size:12.5px;font-weight:600;cursor:pointer;font-family:inherit}
-#tourCard .tbtns button.pri{background:var(--pink);border-color:var(--pink);color:#2b0716}
+#tourCard .tbtns button.pri{background:var(--blue);border-color:var(--blue);color:#081226}
 @media print{
- header,.tagline,.flow,#inputs,.rowbtns,.lockedsec,.cta-neso,footer,#toast,#modal,#tourCard,.exbtn,.exbanner{display:none!important}
+ header,.tagline,.flow,#inputs,.rowbtns,.cta-neso,footer,#toast,#modal,#tourCard,.exbtn,.exbanner,.lockover,.wm,.togglerow .tgl.lockedtgl{display:none!important}
  body{background:#fff;color:#000}
  #app{display:block}
- .brief{border-color:#ccc;background:#fff}
- .brief h2,.brief b,.kpi b{color:#000}
- .kpi,.chip,.massing{border-color:#ccc;background:#fff}
+ .card{border-color:#bbb;background:#fff;break-inside:avoid;margin-bottom:14px}
+ .card h4{color:#1d4ed8}
+ .planwrap{background:#fff;border-color:#ccc}
+ table,th,td{color:#000;border-color:#ccc}
+ .flag{background:#fffbe6;border-color:#e0c96a;color:#333}
 }
 </style>
 </head>
 <body>
 <header>
-  <div id="logo"><svg width="25" height="25" viewBox="0 0 32 32"><path d="M8 24 V14 L16 8 L24 14 V24 H18 V18 H14 V24 Z" fill="none" stroke="#f472b6" stroke-width="2.2" stroke-linejoin="round"/></svg> Build<b>Brief</b></div>
+  <div id="logo"><svg width="25" height="25" viewBox="0 0 32 32"><rect x="5" y="5" width="22" height="22" fill="none" stroke="#60a5fa" stroke-width="1.8" stroke-dasharray="3.5 2.5"/><rect x="10" y="12" width="13" height="11" fill="rgba(96,165,250,.22)" stroke="#60a5fa" stroke-width="1.8"/></svg> Site<b>Shaper</b></div>
   <div class="hsp"></div>
   <button class="pill" id="tourBtn" title="Replay the 60-second tour">&#127891; Tour</button>
-  <button class="pill pro" id="proBtn">Go Pro</button>
+  <button class="pill pro" id="proBtn">Unlock full access</button>
 </header>
 
 <div class="tagline">
-  <h1>Get your vision <em>understood.</em></h1>
-  <p>The most expensive phrase in development is &ldquo;that&rsquo;s not what I meant.&rdquo; BuildBrief turns your early-stage housing idea into a professional <b>Development Intent Brief</b> &mdash; the numbers, priorities, and architect-ready language that make the professionals you hire understand your project the first time.</p>
+  <h1>From lot to <em>scheme book.</em></h1>
+  <p>Enter your lot, setbacks, and program &mdash; SiteShaper draws the site plan, generates schematic floor plates (with <b>MEP locations</b> on single-family), and assembles a printable scheme book your architect can review, redline, and build from. <b>Schematic design intent &mdash; not construction documents.</b></p>
 </div>
 
-<div class="flow" aria-label="How BuildBrief works">
-  <div class="fstep"><div class="fn">1</div><div class="ft"><b>Describe the vision</b><span>Site, project type, who it&rsquo;s for, unit mix, character, and what matters most &mdash; plain answers.</span></div></div>
+<div class="flow" aria-label="How SiteShaper works">
+  <div class="fstep"><div class="fn">1</div><div class="ft"><b>Shape the site</b><span>Lot dimensions, setbacks, and where the building sits &mdash; the envelope draws itself.</span></div></div>
   <div class="farrow">&rarr;</div>
-  <div class="fstep"><div class="fn">2</div><div class="ft"><b>Get the brief</b><span>A one-page intent brief: quick numbers, a massing snapshot, priorities, and pro-ready translation.</span></div></div>
+  <div class="fstep"><div class="fn">2</div><div class="ft"><b>Set the program</b><span>Single-family, townhomes, or multifamily &mdash; beds, units, stories, parking.</span></div></div>
   <div class="farrow">&rarr;</div>
-  <div class="fstep"><div class="fn">3</div><div class="ft"><b>Hand it to your pro</b><span>Architect, GC, or lender reads it in two minutes and starts in the right place &mdash; no lost weeks.</span></div></div>
+  <div class="fstep"><div class="fn">3</div><div class="ft"><b>Get the scheme book</b><span>Site plan, floor plates, MEP markers, numbers table &mdash; print it and hand it over.</span></div></div>
 </div>
 
 <div id="app">
   <div id="inputs">
-    <button class="exbtn" id="exBtn">&#9654; Load an example project &mdash; see a finished brief first</button>
-    <div class="exbanner" id="exBanner"><b>Cedar &amp; Vine</b> &mdash; a 12-unit workforce-housing infill on a half-acre corner lot. See how plain answers become a pro-ready brief &mdash; then edit anything; it&rsquo;s yours the moment you type.</div>
+    <button class="exbtn" id="exBtn">&#9654; Load an example &mdash; see a finished scheme first</button>
+    <div class="exbanner" id="exBanner"><b>Juniper Court</b> &mdash; a two-story 4-bed/2.5-bath with a 2-car garage on a 62&times;125 lot. Explore the plates and MEP markers, then reshape it into your project.</div>
 
     <label class="lbl">Project name</label>
-    <input class="tin" id="pname" placeholder="e.g. Cedar & Vine">
+    <input class="tin" id="pname" placeholder="e.g. Juniper Court">
+    <label class="lbl">Address</label>
+    <input class="tin" id="paddr" placeholder="Street address, city, ST (optional)">
 
     <label class="lbl">Project type</label>
     <div class="segrow" id="typeRow"></div>
 
-    <label class="lbl">Site</label>
-    <input class="tin" id="paddr" placeholder="Address or 'still looking'">
-    <div class="two" style="margin-top:10px">
-      <div><input class="tin" id="lotIn" type="number" value="20000" min="0" step="500"><div class="mini">Lot size (SF)</div></div>
-      <div><input class="tin" id="zonIn" placeholder="e.g. R-3 (if known)"><div class="mini">Zoning, if known</div></div>
-    </div>
-
-    <label class="lbl">What stage are you at?</label>
-    <div class="segrow" id="stageRow"></div>
-
-    <label class="lbl">Who is it for?</label>
-    <div class="segrow" id="whoRow"></div>
-
-    <label class="lbl">Unit mix (counts)</label>
+    <label class="lbl">Lot (feet)</label>
     <div class="two">
-      <div><input class="tin" id="uSt" type="number" value="0" min="0"><div class="mini">Studios</div></div>
-      <div><input class="tin" id="u1" type="number" value="0" min="0"><div class="mini">1-bedroom</div></div>
-    </div>
-    <div class="two" style="margin-top:10px">
-      <div><input class="tin" id="u2" type="number" value="0" min="0"><div class="mini">2-bedroom</div></div>
-      <div><input class="tin" id="u3" type="number" value="0" min="0"><div class="mini">3-bedroom+</div></div>
+      <div><input class="tin" id="lotW" type="number" value="62" min="20" step="1"><div class="mini">Width (street frontage)</div></div>
+      <div><input class="tin" id="lotD" type="number" value="125" min="40" step="1"><div class="mini">Depth</div></div>
     </div>
 
-    <label class="lbl">Stories &amp; parking</label>
+    <label class="lbl">Setbacks (feet)</label>
+    <div class="three">
+      <div><input class="tin" id="sbF" type="number" value="20" min="0"><div class="mini">Front</div></div>
+      <div><input class="tin" id="sbS" type="number" value="7" min="0"><div class="mini">Sides (each)</div></div>
+      <div><input class="tin" id="sbR" type="number" value="20" min="0"><div class="mini">Rear</div></div>
+    </div>
+
+    <!-- SFH program -->
+    <div id="progSFH">
+      <label class="lbl">Home program</label>
+      <div class="two">
+        <div><input class="tin" id="beds" type="number" value="3" min="1" max="6"><div class="mini">Bedrooms</div></div>
+        <div><input class="tin" id="baths" type="number" value="2" min="1" max="4" step="0.5"><div class="mini">Baths</div></div>
+      </div>
+      <div class="two" style="margin-top:10px">
+        <div><input class="tin" id="sfhStories" type="number" value="1" min="1" max="2"><div class="mini">Stories (1&ndash;2)</div></div>
+        <div>
+          <div class="segrow" id="garRow" style="margin-top:0"></div>
+          <div class="mini">Garage</div>
+        </div>
+      </div>
+      <label class="lbl">Target finished area (SF)</label>
+      <input class="tin" id="sfhSF" type="number" value="1500" min="400" step="50">
+      <div class="mini">Leave as suggested or set your own; excludes garage.</div>
+    </div>
+
+    <!-- Townhouse program -->
+    <div id="progTH" style="display:none">
+      <label class="lbl">Row program</label>
+      <div class="two">
+        <div><input class="tin" id="thUnits" type="number" value="4" min="2" max="8"><div class="mini">Units in the row</div></div>
+        <div><input class="tin" id="thBeds" type="number" value="3" min="1" max="4"><div class="mini">Beds per unit</div></div>
+      </div>
+      <div class="mini" style="margin-top:8px">Two-story units, ~20 ft wide &times; 36 ft deep each, shared party walls with back-to-back plumbing.</div>
+    </div>
+
+    <!-- MF program -->
+    <div id="progMF" style="display:none">
+      <label class="lbl">Unit mix (total across building)</label>
+      <div class="two">
+        <div><input class="tin" id="mSt" type="number" value="0" min="0"><div class="mini">Studios</div></div>
+        <div><input class="tin" id="m1" type="number" value="8" min="0"><div class="mini">1-bedroom</div></div>
+      </div>
+      <div class="two" style="margin-top:10px">
+        <div><input class="tin" id="m2" type="number" value="8" min="0"><div class="mini">2-bedroom</div></div>
+        <div><input class="tin" id="m3" type="number" value="0" min="0"><div class="mini">3-bedroom</div></div>
+      </div>
+      <label class="lbl">Stories</label>
+      <input class="tin" id="mfStories" type="number" value="3" min="1" max="6">
+      <div class="mini">Double-loaded corridor; stair cores both ends, elevator at 3+ stories.</div>
+    </div>
+
+    <label class="lbl">Parking</label>
     <div class="two">
-      <div><input class="tin" id="stories" type="number" value="3" min="1" max="12"><div class="mini">Stories</div></div>
-      <div><input class="tin" id="pratio" type="number" value="1" min="0" max="3" step="0.25"><div class="mini">Parking spaces / unit</div></div>
+      <div><input class="tin" id="pratio" type="number" value="2" min="0" max="4" step="0.5"><div class="mini">Spaces per unit / home</div></div>
+      <div><div class="segrow" id="parkRow" style="margin-top:0"></div><div class="mini">Layout</div></div>
     </div>
 
-    <label class="lbl">Design character (tap all that fit)</label>
-    <div class="segrow" id="charRow"></div>
+    <label class="lbl">Building placement</label>
+    <div class="two">
+      <div><input class="tin" id="offF" type="number" value="0" min="0" step="1"><div class="mini">Extra push-back from front (ft)</div></div>
+      <div><input class="tin" id="offS" type="number" value="0" step="1"><div class="mini">Shift left(&minus;)/right(+) (ft)</div></div>
+    </div>
 
-    <label class="lbl">Priorities (tap all that matter)</label>
-    <div class="segrow" id="prioRow"></div>
-
-    <label class="lbl">Budget range (total project)</label>
-    <div class="segrow" id="budRow"></div>
-
-    <label class="lbl">Must-haves</label>
-    <textarea class="tin" id="musts" placeholder="e.g. in-unit laundry, ground-floor accessible units, covered parking"></textarea>
-
-    <label class="lbl">Deal-breakers</label>
-    <textarea class="tin" id="nevers" placeholder="e.g. no shared laundry, no flat roofs"></textarea>
-
-    <label class="lbl">The goal, in your own words</label>
-    <textarea class="tin" id="goal" placeholder="What does success look like when this is built?"></textarea>
-
-    <button id="runBtn">Build my brief &rarr;</button>
-    <p class="mini" style="margin-top:10px">A communication document &mdash; not architecture, engineering, or zoning advice. Verify all yields and requirements with your design professional and jurisdiction. Nothing you enter leaves this device.</p>
+    <button id="runBtn">Draw the scheme &rarr;</button>
+    <p class="mini" style="margin-top:10px"><b>Schematic design intent only.</b> Not architectural, engineering, or MEP design; not for permitting or construction. Confirm all dimensions, codes, and requirements with your licensed design professionals and jurisdiction. Nothing you enter leaves this device.</p>
   </div>
 
   <div id="out"><div id="results"></div></div>
 </div>
 
-<footer><span class="np">BuildBrief &middot; a <a href="https://nesoai.github.io/mallory/" target="_blank" rel="noopener">Boundless</a> tool &middot; v1.0 &middot; &copy; 2026 Boundless / Mallory Bailey-Finkley &mdash; all rights reserved &middot; <a href="https://tally.so/r/rj1Z15?source=buildbrief" target="_blank" rel="noopener">Feedback</a> &middot; </span>Educational planning estimates. Works with <a href="https://nesoai.github.io/proforma/">ProForma</a> + <a href="https://nesoai.github.io/birdseye/">Bird&#8217;s Eye</a>.</footer>
+<footer><span class="np">SiteShaper &middot; a <a href="https://nesoai.github.io/mallory/" target="_blank" rel="noopener">Boundless</a> tool &middot; v1.1 &middot; &copy; 2026 Boundless / Mallory Bailey-Finkley &mdash; all rights reserved &middot; <a href="https://tally.so/r/rj1Z15?source=siteshaper" target="_blank" rel="noopener">Feedback</a> &middot; </span>Schematic design intent only &mdash; review with licensed professionals. Works with <a href="https://nesoai.github.io/buildbrief/">BuildBrief</a> + <a href="https://nesoai.github.io/proforma/">ProForma</a>.</footer>
 <div id="modal"><div id="mcard"><button class="closex" id="mClose">&times;</button><h2 id="mTitle"></h2><div id="mBody"></div></div></div>
 <div id="toast"></div>
 <div id="tourCard" role="dialog" aria-label="Guided tour">
@@ -209,203 +241,510 @@ footer{border-top:1px solid var(--line);padding:20px 18px;font-size:12px;color:v
 </div>
 
 <script>
-/* ============ BUILDBRIEF v1.0 ============ */
-const BUY_URL="mailto:nesoai.us@gmail.com?subject="+encodeURIComponent("Requesting BuildBrief Pro ($29)")+"&body="+encodeURIComponent("Hi Boundless — I'd like BuildBrief Pro. Please send my unlock code and how to pay."); // ← swap for Gumroad when live
-const PRICE_TXT="$29 one-time";
-const NESO_CTA="https://tally.so/r/q4MLYg?track=re&services="+encodeURIComponent("Development Feasibility (Standard)")+"&credits=12&source=buildbrief";
-const BIRDSEYE="https://nesoai.github.io/birdseye/";
+/* ============ SITESHAPER v1.0 (Phase A) ============ */
+const BUY_URL="https://nesoai.gumroad.com/l/uutuy";
+const PRICE_TXT="$199 founding price";
+const NESO_CTA="https://tally.so/r/q4MLYg?track=re&services="+encodeURIComponent("Development Feasibility (Standard)")+"&credits=12&source=siteshaper";
 
 const $=id=>document.getElementById(id);
-const KEY='buildbrief.v1';
-let S=Object.assign({pro:false},(()=>{try{return JSON.parse(localStorage.getItem(KEY))||{}}catch(e){return{}}})());
+const KEY='siteshaper.v1';
+let S=Object.assign({pro:false,mep:true},(()=>{try{return JSON.parse(localStorage.getItem(KEY))||{}}catch(e){return{}}})());
 function save(){try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}}
 function toast(t){const x=$('toast');x.textContent=t;x.classList.add('on');clearTimeout(toast.t);toast.t=setTimeout(()=>x.classList.remove('on'),2600)}
 const esc=x=>String(x==null?'':x).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
-const fk=n=>Math.abs(n)>=1000?(Math.round(n/100)/10)+'k':Math.round(n);
+const fk=n=>Math.round(n).toLocaleString('en-US');
 
 /* ---- selectors ---- */
-const TYPES=[['sfh','&#127968; Single-family'],['du','&#127969; Duplex&ndash;fourplex'],['smf','&#127970; Small multifamily (5&ndash;20)'],['mf','&#127971; Multifamily (20+)'],['mx','&#127978; Mixed-use']];
-const STAGES=[['idea','Just an idea'],['looking','Site hunting'],['contract','Under contract'],['own','Own the site'],['redesign','Rethinking a design']];
-const WHOS=[['fam','Families'],['wf','Workforce'],['sen','Seniors'],['stu','Students'],['lux','Market-rate / premium'],['mixinc','Mixed-income']];
-const CHARS=[['modern','Modern / clean'],['trad','Traditional'],['farm','Farmhouse / craftsman'],['ind','Industrial / loft'],['ctx','Match the neighborhood']];
-const PRIOS=[['afford','Affordability'],['dur','Durability / low maintenance'],['green','Energy efficiency'],['light','Natural light'],['out','Outdoor space'],['acc','Accessibility'],['comm','Community feel'],['speed','Speed to build']];
-const BUDS=[['b1','Under $1M'],['b2','$1&ndash;3M'],['b3','$3&ndash;8M'],['b4','$8&ndash;20M'],['b5','$20M+'],['b0','Not sure yet']];
-let TYPE='smf', STAGE='idea', WHO=new Set(['wf']), CHAR=new Set(['ctx']), PRIO=new Set(['afford','dur']), BUD='b0';
-
-function segInit(rowId,items,get,set,multi){
-  $(rowId).innerHTML=items.map(x=>`<button class="seg ${multi?(get().has(x[0])?'on':''):(x[0]===get()?'on':'')}" data-v="${x[0]}">${x[1]}</button>`).join('');
-  $(rowId).querySelectorAll('.seg').forEach(b=>b.onclick=()=>{
-    if(multi){const s=get();s.has(b.dataset.v)?s.delete(b.dataset.v):s.add(b.dataset.v);
-      $(rowId).querySelectorAll('.seg').forEach(x=>x.classList.toggle('on',s.has(x.dataset.v)));}
-    else{set(b.dataset.v);$(rowId).querySelectorAll('.seg').forEach(x=>x.classList.toggle('on',x===b));}
-    run();});
+const TYPES=[['sfh','&#127968; Single-family'],['th','&#127969; Townhouse row'],['mf','&#127970; Multifamily']];
+const GARS=[['0','None'],['1','1-car'],['2','2-car']];
+const PARKS=[['drive','Driveway'],['surface','Surface lot (rear)']];
+let TYPE='sfh', GAR='2', PARK='drive';
+function segInit(rowId,items,get,set){
+  $(rowId).innerHTML=items.map(x=>`<button class="seg ${x[0]===get()?'on':''}" data-v="${x[0]}">${x[1]}</button>`).join('');
+  $(rowId).querySelectorAll('.seg').forEach(b=>b.onclick=()=>{set(b.dataset.v);$(rowId).querySelectorAll('.seg').forEach(x=>x.classList.toggle('on',x===b));onType();run();});
 }
 segInit('typeRow',TYPES,()=>TYPE,v=>TYPE=v);
-segInit('stageRow',STAGES,()=>STAGE,v=>STAGE=v);
-segInit('whoRow',WHOS,()=>WHO,null,true);
-segInit('charRow',CHARS,()=>CHAR,null,true);
-segInit('prioRow',PRIOS,()=>PRIO,null,true);
-segInit('budRow',BUDS,()=>BUD,v=>BUD=v);
-['pname','paddr','lotIn','zonIn','uSt','u1','u2','u3','stories','pratio','musts','nevers','goal'].forEach(id=>$(id).oninput=()=>run());
+segInit('garRow',GARS,()=>GAR,v=>GAR=v);
+segInit('parkRow',PARKS,()=>PARK,v=>PARK=v);
+function onType(){ EDIT={on:false,floor:0,sel:-1};
+  $('progSFH').style.display=TYPE==='sfh'?'':'none';
+  $('progTH').style.display=TYPE==='th'?'':'none';
+  $('progMF').style.display=TYPE==='mf'?'':'none';
+  if(TYPE==='sfh'&&PARK!=='drive'){PARK='drive';segInit('parkRow',PARKS,()=>PARK,v=>PARK=v);}
+  if(TYPE!=='sfh'&&PARK!=='surface'){PARK='surface';segInit('parkRow',PARKS,()=>PARK,v=>PARK=v);}
+}
+['pname','paddr','lotW','lotD','sbF','sbS','sbR','beds','baths','sfhStories','sfhSF','thUnits','thBeds','mSt','m1','m2','m3','mfStories','pratio','offF','offS'].forEach(id=>{const e=$(id); if(e) e.oninput=()=>run();});
 $('runBtn').onclick=()=>{run();const r=$('results');if(r&&r.scrollIntoView)r.scrollIntoView({behavior:'smooth',block:'start'});};
 
-/* ---- model ---- */
-const SIZES={st:520,b1:700,b2:950,b3:1150};
-function compute(){
-  const lot=+$('lotIn').value||0;
-  const u={st:+$('uSt').value||0,b1:+$('u1').value||0,b2:+$('u2').value||0,b3:+$('u3').value||0};
-  const units=u.st+u.b1+u.b2+u.b3;
-  const nrsf=u.st*SIZES.st+u.b1*SIZES.b1+u.b2*SIZES.b2+u.b3*SIZES.b3;
-  const circ=(TYPE==='sfh'||TYPE==='du')?1.05:1.15;
-  const gsf=Math.round(nrsf*circ);
-  const stories=Math.max(1,+$('stories').value||1);
-  const foot=stories?Math.round(gsf/stories):0;
-  const cov=lot?foot/lot:0;
-  const far=lot?gsf/lot:0;
-  const acres=lot/43560;
-  const dua=acres?units/acres:0;
-  const park=Math.ceil(units*(+$('pratio').value||0));
-  const parkSF=park*330; // stall + aisle rough
-  const openSF=Math.max(0,lot-foot-parkSF);
-  return {lot,acres,u,units,nrsf,gsf,stories,foot,cov,far,dua,park,parkSF,openSF};
-}
-function conType(){ // likely construction type
-  const st=+$('stories').value||1;
-  if(TYPE==='sfh'||TYPE==='du') return 'light wood frame (IRC single-family/duplex track)';
-  if(st<=4) return 'Type V wood frame over slab or podium';
-  if(st<=6) return 'Type III/V wood frame, possibly over a concrete podium (5-over-1)';
-  return 'Type I concrete/steel — a step up in cost class';
-}
-const lbl=(arr,set)=>arr.filter(a=>set.has(a[0])).map(a=>a[1].replace(/&#\d+;\s*/,'')).join(', ');
-
-/* ---- render ---- */
-function run(){
-  const R=compute();
-  const out=$('results');
-  const nm=($('pname').value||'').trim()||'Untitled project';
-  if(!R.units){out.innerHTML='<div class="brief"><div class="bk">Development Intent Brief</div><h2>'+esc(nm)+'</h2><p style="margin-top:8px">Add your unit mix on the left &mdash; or load the example &mdash; and the brief writes itself here, ready to print and hand to your architect, GC, or lender.</p></div>';return;}
-
-  const typeName={sfh:'single-family',du:'duplex&ndash;fourplex',smf:'small multifamily',mf:'multifamily',mx:'mixed-use'}[TYPE];
-  const stageName={idea:'concept stage',looking:'site selection',contract:'site under contract',own:'site owned',redesign:'design revision'}[STAGE];
-  const whoTxt=lbl(WHOS,WHO)||'general market';
-  const charTxt=lbl(CHARS,CHAR)||'contextual';
-  const prioTxt=lbl(PRIOS,PRIO);
-  const budTxt={b1:'under $1M',b2:'$1&ndash;3M',b3:'$3&ndash;8M',b4:'$8&ndash;20M',b5:'$20M+',b0:'to be established'}[BUD];
-  const mixParts=[];
-  if(R.u.st)mixParts.push(R.u.st+' studio'+(R.u.st>1?'s':''));
-  if(R.u.b1)mixParts.push(R.u.b1+' one-bed');
-  if(R.u.b2)mixParts.push(R.u.b2+' two-bed');
-  if(R.u.b3)mixParts.push(R.u.b3+' three-bed+');
-  const mixTxt=mixParts.join(', ');
-
-  /* flags */
+/* ============ GEOMETRY MODEL ============ */
+const UNITSZ={st:520,b1:700,b2:950,b3:1150};
+function model(){
+  const lotW=+$('lotW').value||0, lotD=+$('lotD').value||0;
+  const sbF=+$('sbF').value||0, sbS=+$('sbS').value||0, sbR=+$('sbR').value||0;
+  const envW=Math.max(0,lotW-2*sbS), envD=Math.max(0,lotD-sbF-sbR);
   const flags=[];
-  if(R.cov>0.6) flags.push('<b>Coverage check:</b> the footprint covers ~'+Math.round(R.cov*100)+'% of the lot before parking and setbacks — many codes cap coverage at 40–60%. Expect the architect to push stories up or unit count down.');
-  if(R.dua>30 && (TYPE==='sfh'||TYPE==='du')) flags.push('<b>Density vs. type:</b> ~'+Math.round(R.dua)+' units/acre is multifamily-scale density on a single-family/duplex project type — the type or the count likely needs to move.');
-  if(R.parkSF>R.lot*0.5 && R.park>0) flags.push('<b>Parking reality:</b> '+R.park+' surface stalls need ~'+fk(R.parkSF)+' SF — over half the lot. Structured/tuck-under parking or a lower ratio may be the real conversation.');
-  if((+$('stories').value||1)>=5) flags.push('<b>Construction class:</b> at '+$('stories').value+' stories the likely structure is '+conType()+' — a cost-class jump worth pricing before falling in love with the height.');
-  if(!$('zonIn').value.trim()) flags.push('<b>Zoning unknown:</b> the single fastest de-risk is a zoning read — what&rsquo;s allowed by right, and what needs relief. (Bird&rsquo;s Eye does this in two business days.)');
+  let bw=0,bd=0,stories=1,units=1,gsf=0,net=0,label='',garW=0,garD=0;
+  if(TYPE==='sfh'){
+    stories=Math.min(2,Math.max(1,+$('sfhStories').value||1));
+    net=+$('sfhSF').value||1200;
+    const perFloor=net/stories;
+    garW=GAR==='0'?0:(GAR==='1'?13:22); garD=GAR==='0'?0:22;
+    // choose footprint: aspect ~ wider than deep, fit envelope width
+    let fw=Math.sqrt(perFloor*1.35), fd=perFloor/fw;
+    bw=Math.min(envW - (0), Math.max(fw, garW+14)); // room for garage + entry
+    bd=Math.max(fd, garD+4);
+    // recompute to hold area
+    bd=perFloor/ (bw-(stories===1&&GAR!=='0'?0:0)) ;
+    if(GAR!=='0'){ // garage adds to ground footprint beside living area
+      const liveW=Math.max(14,bw-garW);
+      bd=Math.max(perFloor/liveW, garD);
+      bw=liveW+garW;
+    }
+    bw=Math.round(bw); bd=Math.round(bd);
+    gsf=net+(GAR==='0'?0:garW*garD);
+    units=1; label='Single-family';
+  } else if(TYPE==='th'){
+    const n=Math.max(2,Math.min(8,+$('thUnits').value||4));
+    bw=n*20; bd=36; stories=2; units=n;
+    net=n*20*36*2*0.9; gsf=n*20*36*2; label=n+'-unit townhouse row';
+  } else {
+    const mix={st:+$('mSt').value||0,b1:+$('m1').value||0,b2:+$('m2').value||0,b3:+$('m3').value||0};
+    units=mix.st+mix.b1+mix.b2+mix.b3;
+    stories=Math.max(1,Math.min(6,+$('mfStories').value||3));
+    net=mix.st*UNITSZ.st+mix.b1*UNITSZ.b1+mix.b2*UNITSZ.b2+mix.b3*UNITSZ.b3;
+    gsf=net/0.80; // 80% efficiency
+    const unitDepth=28, corr=6;
+    bd=unitDepth*2+corr; // 62
+    bw=Math.round((gsf/stories)/bd);
+    bw=Math.max(bw, 44); // min for cores
+    label=units+'-unit multifamily';
+    window.__MIX=mix;
+  }
+  if(bw>envW+0.01) flags.push({t:'err',m:'<b>Doesn\u2019t fit:</b> the plate is '+Math.round(bw)+' ft wide but the buildable envelope is only '+Math.round(envW)+' ft. Reduce the program, add stories, or revisit setbacks.'});
+  if(bd>envD+0.01) flags.push({t:'err',m:'<b>Doesn\u2019t fit:</b> the plate is '+Math.round(bd)+' ft deep vs a '+Math.round(envD)+' ft envelope. Reduce depth or program.'});
+  const offF=Math.max(0,+$('offF').value||0);
+  let offS=+$('offS').value||0;
+  const maxShift=Math.max(0,(envW-bw)/2);
+  offS=Math.max(-maxShift,Math.min(maxShift,offS));
+  const bx=sbS+(envW-bw)/2+offS, by=sbF+offF;
+  if(by+bd>lotD-sbR+0.01) flags.push({t:'err',m:'<b>Placement:</b> the extra push-back pushes the building into the rear setback. Reduce it.'});
+  // parking
+  const homes=units;
+  const stalls=Math.ceil(homes*(+$('pratio').value||0));
+  const parkSF=PARK==='drive'?stalls*180:stalls*330;
+  const rearFree=(lotD-sbR)-(by+bd);
+  const parkDepth=PARK==='surface'?Math.ceil(parkSF/Math.max(1,bw)):0;
+  if(PARK==='surface'&&parkDepth>rearFree) flags.push({t:'warn',m:'<b>Parking squeeze:</b> ~'+fk(parkSF)+' SF of surface parking needs ~'+parkDepth+' ft of rear depth; only '+Math.max(0,Math.round(rearFree))+' ft remains. Consider fewer stalls, tuck-under, or more stories.'});
+  const lotSF=lotW*lotD, foot=bw*bd, cov=lotSF?foot/lotSF:0, far=lotSF?gsf/lotSF:0;
+  const acres=lotSF/43560, dua=acres?homes/acres:0;
+  if(cov>0.55) flags.push({t:'warn',m:'<b>Coverage:</b> footprint is '+Math.round(cov*100)+'% of the lot \u2014 many codes cap 40\u201360%. Verify locally.'});
+  return {lotW,lotD,sbF,sbS,sbR,envW,envD,bw,bd,bx,by,stories,units,net,gsf,foot,cov,far,acres,dua,stalls,parkSF,parkDepth,flags,label,garW,garD};
+}
 
-  /* massing svg */
-  const W=340,H=200,pad=18;
-  const lotRatio=Math.min(1,R.lot? (R.foot+R.parkSF)/R.lot :0);
-  const lotW=W-pad*2, lotH=H-pad*2;
-  const bldgW=Math.max(24,Math.sqrt(Math.max(0.02,R.foot/(R.lot||1)))*lotW);
-  const bldgH=Math.max(20,Math.sqrt(Math.max(0.02,R.foot/(R.lot||1)))*lotH*0.9);
-  const pW=Math.max(0,Math.min(lotW-bldgW-14,Math.sqrt(Math.max(0,R.parkSF/(R.lot||1)))*lotW));
-  const massing=`<svg viewBox="0 0 ${W} ${H+34}" xmlns="http://www.w3.org/2000/svg">
-    <rect x="${pad}" y="${pad}" width="${lotW}" height="${lotH}" fill="none" stroke="#3a4757" stroke-dasharray="5 4" rx="4"/>
-    <rect x="${pad+10}" y="${pad+10}" width="${bldgW}" height="${bldgH}" fill="rgba(244,114,182,.18)" stroke="#f472b6" stroke-width="1.5" rx="3"/>
-    <text x="${pad+10+bldgW/2}" y="${pad+10+bldgH/2+4}" fill="#f4a9cf" font-size="11" text-anchor="middle" font-family="Inter">${R.stories} stories</text>
-    ${pW>12?`<rect x="${pad+lotW-pW-10}" y="${pad+lotH-Math.min(56,lotH*0.4)-10}" width="${pW}" height="${Math.min(56,lotH*0.4)}" fill="rgba(234,179,8,.12)" stroke="#eab308" stroke-width="1" rx="3"/><text x="${pad+lotW-pW/2-10}" y="${pad+lotH-Math.min(56,lotH*0.4)/2-4}" fill="#d9b44a" font-size="9.5" text-anchor="middle" font-family="Inter">parking</text>`:''}
-    <text x="${pad}" y="${H+18}" fill="#5e7080" font-size="10" font-family="Inter">Lot ${fk(R.lot)} SF &middot; footprint ~${fk(R.foot)} SF (${Math.round(R.cov*100)}% coverage) &middot; open ~${fk(R.openSF)} SF</text>
-    <text x="${pad}" y="${H+31}" fill="#5e7080" font-size="10" font-family="Inter">Proportions are diagrammatic — not a site plan.</text>
-  </svg>`;
+/* ============ SVG HELPERS ============ */
+const NS='http://www.w3.org/2000/svg';
+function svgOpen(w,h){return `<svg viewBox="0 0 ${w} ${h}" xmlns="${NS}" font-family="Inter">`;}
+function R(x,y,w,h,o={}){return `<rect x="${x.toFixed(1)}" y="${y.toFixed(1)}" width="${w.toFixed(1)}" height="${h.toFixed(1)}" fill="${o.f||'none'}" stroke="${o.s||'none'}" stroke-width="${o.sw||1}" ${o.d?`stroke-dasharray="${o.d}"`:''} rx="${o.rx||0}"/>`;}
+function T(x,y,t,o={}){return `<text x="${x.toFixed(1)}" y="${y.toFixed(1)}" fill="${o.f||'#96a6b6'}" font-size="${o.z||9}" ${o.a?`text-anchor="${o.a}"`:''} ${o.w?`font-weight="${o.w}"`:''} ${o.r?`transform="rotate(${o.r} ${x.toFixed(1)} ${y.toFixed(1)})"`:''}>${t}</text>`;}
+function L(x1,y1,x2,y2,o={}){return `<line x1="${x1.toFixed(1)}" y1="${y1.toFixed(1)}" x2="${x2.toFixed(1)}" y2="${y2.toFixed(1)}" stroke="${o.s||'#3a4757'}" stroke-width="${o.sw||1}" ${o.d?`stroke-dasharray="${o.d}"`:''}/>`;}
 
-  /* pro translation */
-  const proLines=[
-    `Program: ${R.units} units (${mixTxt}); ~${fk(R.nrsf)} SF net residential, ~${fk(R.gsf)} SF gross at ${Math.round((R.gsf/R.nrsf-1)*100)}% circulation.`,
-    `Massing intent: ${R.stories} stories; footprint ~${fk(R.foot)} SF; FAR ~${R.far.toFixed(2)}; ~${R.dua?Math.round(R.dua):'—'} units/acre.`,
-    `Parking: ${R.park} spaces (${(+$('pratio').value||0)} per unit) — confirm against local minimums or reductions.`,
-    `Likely construction: ${conType()}.`,
-    `Character direction: ${charTxt}. Priorities to design around: ${prioTxt||'to be discussed'}.`,
-    `Budget frame: ${budTxt}. Stage: ${stageName}.`
-  ];
-  const openQs=[
-    'What does the zoning actually allow by right here — and what needs relief?',
-    'Does the unit mix match what the market/lender wants, or should it shift?',
-    'Where should cost flex first if bids come in high — finishes, parking, or unit count?',
-    (PRIO.has('green')?'Which efficiency measures pay back vs. which are brand?':'What building systems fit the maintenance budget?'),
-    'What approvals path and timeline should we plan around?'
-  ];
-  const docList=['Site survey or plat (if you have it)','Any zoning letters, listings, or prior studies','Photos of the site and neighbors','Comparable projects you like (photos/links)','This brief + your budget frame','Pre-qualification or proof of funds, if lender conversations are near'];
+/* ============ SITE PLAN ============ */
+function sitePlan(M){
+  const maxW=560, pad=34;
+  const sc=Math.min((maxW-pad*2)/M.lotW, 420/M.lotD);
+  const W=M.lotW*sc+pad*2, H=M.lotD*sc+pad*2+16;
+  const X=x=>pad+x*sc, Y=y=>pad+y*sc;
+  let s=svgOpen(W,H);
+  // street
+  s+=R(pad-14,6,M.lotW*sc+28,14,{f:'rgba(94,112,128,.15)'});
+  s+=T(W/2,16,'STREET',{a:'middle',z:8.5,f:'#5e7080'});
+  // lot
+  s+=R(X(0),Y(0),M.lotW*sc,M.lotD*sc,{s:'#96a6b6',sw:1.6});
+  // envelope
+  s+=R(X(M.sbS),Y(M.sbF),M.envW*sc,M.envD*sc,{s:'#60a5fa',sw:1.1,d:'6 4'});
+  s+=T(X(M.sbS)+4,Y(M.sbF)+11,'BUILDABLE ENVELOPE',{z:7.5,f:'#60a5fa'});
+  // building
+  s+=R(X(M.bx),Y(M.by),M.bw*sc,M.bd*sc,{f:'rgba(96,165,250,.16)',s:'#60a5fa',sw:1.8});
+  s+=T(X(M.bx)+M.bw*sc/2,Y(M.by)+M.bd*sc/2-4,esc(M.label),{a:'middle',z:9.5,f:'#cfe3ff',w:700});
+  s+=T(X(M.bx)+M.bw*sc/2,Y(M.by)+M.bd*sc/2+8,M.stories+(M.stories>1?' stories':' story')+' \u00b7 '+fk(M.foot)+' SF footprint',{a:'middle',z:8,f:'#96a6b6'});
+  // parking
+  if(PARK==='surface'&&M.parkDepth>0){
+    const py=M.by+M.bd+4;
+    s+=R(X(M.bx),Y(py),M.bw*sc,Math.min(M.parkDepth,(M.lotD-M.sbR)-py)*sc,{f:'rgba(234,179,8,.10)',s:'#eab308',sw:1,d:'4 3'});
+    s+=T(X(M.bx)+M.bw*sc/2,Y(py)+12,'SURFACE PARKING \u00b7 '+M.stalls+' stalls',{a:'middle',z:8,f:'#d9b44a'});
+  } else if(PARK==='drive'){
+    const dw=Math.min(20,M.garW||16), dx=M.bx+(M.garW? (M.bw-M.garW): (M.bw-dw)/2);
+    s+=R(X(dx),Y(0),(M.garW||dw)*sc,M.by*sc,{f:'rgba(234,179,8,.10)',s:'#eab308',sw:1,d:'4 3'});
+    s+=T(X(dx)+((M.garW||dw)*sc)/2,Y(0)+M.by*sc/2,'DRIVE',{a:'middle',z:8,f:'#d9b44a',r:90});
+  }
+  // dims
+  s+=T(X(M.lotW/2),H-6,M.lotW+"' frontage",{a:'middle',z:8.5});
+  s+=T(12,Y(M.lotD/2),M.lotD+"'",{a:'middle',z:8.5,r:-90});
+  s+=T(X(M.sbS/2),Y(M.sbF+M.envD/2),M.sbS+"'",{a:'middle',z:7.5,f:'#5e7080'});
+  s+=T(X(M.lotW)-10,Y(M.sbF/2)+3,M.sbF+"' front",{a:'end',z:7.5,f:'#5e7080'});
+  s+=T(X(M.lotW)-10,Y(M.lotD-M.sbR/2)+3,M.sbR+"' rear",{a:'end',z:7.5,f:'#5e7080'});
+  // north arrow
+  s+=`<g transform="translate(${W-24},${34})"><path d="M0,10 L5,-8 L10,10 L5,5 Z" fill="#96a6b6"/><text x="5" y="22" fill="#96a6b6" font-size="8" text-anchor="middle">N</text></g>`;
+  s+='</svg>';
+  return s;
+}
 
-  const summary=`<b>${esc(nm)}</b> is a proposed <b>${typeName}</b> project${$('paddr').value?(' at <b>'+esc($('paddr').value)+'</b>'):''}, currently at <b>${stageName}</b>. The vision: <b>${R.units} homes</b> (${mixTxt}) serving <b>${whoTxt}</b>, in a <b>${charTxt}</b> character, on a ${fk(R.lot)} SF lot${$('zonIn').value?(' zoned '+esc($('zonIn').value)):''}. Top priorities: <b>${prioTxt||'to be defined'}</b>. Budget frame: <b>${budTxt}</b>.`;
+/* ============ MEP SYMBOLS ============ */
+function mep(x,y,kind){
+  const c={P:'#2dd4bf',E:'#eab308',H:'#f472b6',W:'#60a5fa',C:'#f472b6'};
+  if(kind==='P') return `<circle cx="${x}" cy="${y}" r="5" fill="none" stroke="${c.P}" stroke-width="1.6"/><text x="${x}" y="${y+3}" fill="${c.P}" font-size="7" text-anchor="middle" font-weight="700">P</text>`;
+  if(kind==='E') return R(x-5,y-5,10,10,{s:c.E,sw:1.6})+T(x,y+3,'E',{f:c.E,z:7,a:'middle',w:700});
+  if(kind==='H') return `<path d="M${x},${y-6} L${x+6},${y+4} L${x-6},${y+4} Z" fill="none" stroke="${c.H}" stroke-width="1.6"/><text x="${x}" y="${y+2.5}" fill="${c.H}" font-size="6.5" text-anchor="middle" font-weight="700">H</text>`;
+  if(kind==='W') return `<circle cx="${x}" cy="${y}" r="5.5" fill="none" stroke="${c.W}" stroke-width="1.6"/><text x="${x}" y="${y+3}" fill="${c.W}" font-size="6.5" text-anchor="middle" font-weight="700">WH</text>`;
+  if(kind==='C') return R(x-6,y-4,12,8,{s:c.C,sw:1.4,d:'2 2'})+T(x,y+2.5,'AC',{f:c.C,z:6.5,a:'middle',w:700});
+  return '';
+}
+const MEP_LEGEND=`<div class="mep-legend">
+ <span><svg width="14" height="14"><circle cx="7" cy="7" r="5" fill="none" stroke="#2dd4bf" stroke-width="1.6"/></svg> Plumbing fixture group</span>
+ <span><svg width="14" height="14"><rect x="2" y="2" width="10" height="10" fill="none" stroke="#eab308" stroke-width="1.6"/></svg> Electrical panel</span>
+ <span><svg width="14" height="14"><path d="M7,1 L13,11 L1,11 Z" fill="none" stroke="#f472b6" stroke-width="1.6"/></svg> HVAC air handler</span>
+ <span><svg width="14" height="14"><circle cx="7" cy="7" r="5.5" fill="none" stroke="#60a5fa" stroke-width="1.6"/></svg> Water heater</span>
+ <span><svg width="16" height="12"><rect x="1" y="2" width="14" height="8" fill="none" stroke="#f472b6" stroke-width="1.4" stroke-dasharray="2 2"/></svg> Condenser (exterior)</span>
+ <span style="color:#2dd4bf">&#9473;&#9473; Plumbing wet wall</span></div>`;
 
-  const goalBlock=$('goal').value.trim()?`<h4>The goal, in the owner&rsquo;s words</h4><p style="font-family:Fraunces,serif;font-style:italic;font-size:14.5px;color:var(--ink)">&ldquo;${esc($('goal').value.trim())}&rdquo;</p>`:'';
-  const mustBlock=($('musts').value.trim()||$('nevers').value.trim())?`<h4>Must-haves &amp; deal-breakers</h4>${$('musts').value.trim()?('<p><b>Must have:</b> '+esc($('musts').value.trim())+'</p>'):''}${$('nevers').value.trim()?('<p><b>Never:</b> '+esc($('nevers').value.trim())+'</p>'):''}`:'';
+/* ============ SFH FLOOR PLATES (rooms model + custom editor) ============ */
+function mepFor(name){
+  const n=name.toUpperCase();
+  if(/GARAGE/.test(n)) return ['E','W','H'];
+  if(/KITCHEN/.test(n)) return ['P'];
+  if(/BATH|POWDER/.test(n)) return ['P'];
+  if(/LAUNDRY|MUD|UTILITY/.test(n)) return ['P'];
+  return null;
+}
+function bandRooms(list,y,h,bw){ // list:[{n,wt}] -> rooms in ft
+  const tot=list.reduce((a,r)=>a+r.wt,0);
+  let x=0; const out=[];
+  list.forEach(r=>{ const w=bw*r.wt/tot; out.push({n:r.n,x:+x.toFixed(1),y:+y.toFixed(1),w:+w.toFixed(1),h:+h.toFixed(1)}); x+=w; });
+  return out;
+}
+function sfhAutoRooms(M,floor){
+  const beds=Math.max(1,+$('beds').value||3), baths=+$('baths').value||2;
+  const twoSt=M.stories===2;
+  const fh=+(M.bd*0.46).toFixed(1), rh=+(M.bd-fh).toFixed(1);
+  let front=[],rear=[];
+  if(!twoSt){
+    if(M.garW) front.push({n:'GARAGE',wt:M.garW});
+    front.push({n:'ENTRY',wt:8},{n:'LIVING',wt:16},{n:'KITCHEN / DINING',wt:15});
+    rear.push({n:'PRIMARY BED',wt:14},{n:'PRIMARY BATH',wt:7});
+    for(let b=2;b<=beds;b++) rear.push({n:'BED '+b,wt:11});
+    if(baths>=2) rear.splice(3,0,{n:'BATH 2',wt:6});
+    rear.push({n:'LAUNDRY',wt:6});
+  } else if(floor===1){
+    if(M.garW) front.push({n:'GARAGE',wt:M.garW});
+    front.push({n:'ENTRY / FOYER',wt:9},{n:'LIVING',wt:16});
+    rear.push({n:'KITCHEN / DINING',wt:16},{n:'POWDER',wt:5},{n:'LAUNDRY / MUD',wt:7},{n:'FLEX / STUDY',wt:10});
+  } else {
+    front.push({n:'BED 2',wt:11});
+    if(baths>=2) front.push({n:'BATH 2',wt:6});
+    for(let b=3;b<=beds;b++) front.push({n:'BED '+b,wt:11});
+    rear.push({n:'PRIMARY BED',wt:15},{n:'PRIMARY BATH',wt:7},{n:'W.I.C.',wt:6},{n:'HALL / STAIR',wt:6});
+  }
+  return [...bandRooms(front,0,fh,M.bw), ...bandRooms(rear,fh,rh,M.bw)];
+}
+if(!S.layouts) S.layouts={};
+let EDIT={on:false,floor:0,sel:-1};
+const layKey=f=>'sfh:'+f+':'+Math.round(model().bw)+'x'+Math.round(model().bd);
+function roomsFor(M,floor){ const k=layKey(floor); return S.layouts[k]?S.layouts[k]:sfhAutoRooms(M,floor); }
+function isCustom(floor){ return !!S.layouts[layKey(floor)]; }
 
-  const proSection = S.pro ? `
-    <h4>Say it like a pro &mdash; hand this to your architect</h4>
-    <ul class="plain">${proLines.map(l=>'<li>'+l+'</li>').join('')}</ul>
-    <h4>Five questions to ask in the first meeting</h4>
-    <ul class="plain">${openQs.map(l=>'<li>'+l+'</li>').join('')}</ul>
-    <h4>What to bring</h4>
-    <div class="chips">${docList.map(d=>'<span class="chip">'+d+'</span>').join('')}</div>`
-    : `<div class="lockedsec"><b>&#128274; The pro-translation layer is Pro:</b> your program restated in architect language (FAR, construction type, circulation factors), the five questions to ask in the first meeting, and the bring-with-you checklist &mdash; plus the print-ready brief. <button class="lockbtn" onclick="openPro()">Unlock &mdash; ${PRICE_TXT}</button></div>`;
+function sfhPlate(M,floor,showMEP){
+  const maxW=560,pad=30;
+  const sc=Math.min((maxW-pad*2)/M.bw, 300/M.bd);
+  const editing=EDIT.on&&EDIT.floor===floor;
+  const rooms=editing?S.layouts[layKey(floor)]:roomsFor(M,floor);
+  const W=M.bw*sc+pad*2, H=M.bd*sc+pad*2+40;
+  const X=pad,Y=pad;
+  let s2=svgOpen(W,H).replace('<svg ',`<svg id="plateSvg${floor}" data-sc="${sc}" data-pad="${pad}" `);
+  s2+=R(X,Y,M.bw*sc,M.bd*sc,{s:'#60a5fa',sw:2});
+  rooms.forEach((r,i)=>{
+    const rx=X+r.x*sc, ry=Y+r.y*sc, rw=r.w*sc, rh=r.h*sc;
+    const plumb=mepFor(r.n)&&mepFor(r.n).includes('P');
+    const sel=editing&&EDIT.sel===i;
+    s2+=`<g class="room-sel" data-i="${i}">`;
+    s2+=R(rx,ry,rw,rh,{s:sel?'#eab308':(plumb&&showMEP?'#2dd4bf':'#3a4757'),sw:sel?2.2:(plumb&&showMEP?1.6:1),f:sel?'rgba(234,179,8,.06)':'none'});
+    s2+=T(rx+rw/2,ry+rh/2-3,esc(r.n),{a:'middle',z:8,f:'#cfd9e4',w:600});
+    s2+=T(rx+rw/2,ry+rh/2+8,Math.round(r.w)+"'\u00d7"+Math.round(r.h)+"'",{a:'middle',z:7,f:'#5e7080'});
+    if(showMEP){ const mk=mepFor(r.n); if(mk) mk.forEach((k,j)=>{ s2+=mep(rx+10+j*14, ry+11, k); }); }
+    if(editing) s2+=R(rx+rw-7,ry+rh-7,7,7,{f:'#eab308'});
+    s2+='</g>';
+  });
+  if(showMEP&&!editing&&!isCustom(floor)){
+    const wet=rooms.filter(r=>mepFor(r.n)&&mepFor(r.n).includes('P'));
+    if(wet.length){
+      const yBand=Math.min(...wet.map(r=>r.y));
+      const x1=X+Math.min(...wet.map(r=>r.x))*sc, x2=X+Math.max(...wet.map(r=>r.x+r.w))*sc;
+      s2+=L(x1,Y+yBand*sc,x2,Y+yBand*sc,{s:'#2dd4bf',sw:3});
+      s2+=T((x1+x2)/2,Y+yBand*sc-5,'PLUMBING WET WALL',{a:'middle',z:7,f:'#2dd4bf',w:700});
+    }
+  }
+  if(showMEP){
+    s2+=mep(X+M.bw*sc-18,Y+M.bd*sc+12,'C');
+    s2+=T(X+M.bw*sc-30,Y+M.bd*sc+15,'condenser pad',{a:'end',z:7,f:'#5e7080'});
+  }
+  s2+=T(X,H-8,(M.stories===2?('FLOOR '+floor):'FLOOR PLAN')+(isCustom(floor)?' \u00b7 custom layout':'')+' \u00b7 schematic \u2014 not for construction',{z:8,f:'#5e7080'});
+  s2+='</svg>';
+  return s2;
+}
 
-  out.innerHTML=`<div class="brief">
-    <div class="bk">Development Intent Brief</div>
-    <h2>${esc(nm)}</h2>
-    <div class="bsub">Prepared with BuildBrief &middot; ${new Date().toLocaleDateString('en-US',{month:'long',day:'numeric',year:'numeric'})} &middot; SAMPLE-quality yields — verify with your design professional</div>
-    <p>${summary}</p>
-    <div class="kpis">
-      <div class="kpi"><div class="kl">Homes</div><b>${R.units}</b><div class="kn">${mixTxt}</div></div>
-      <div class="kpi"><div class="kl">Gross area</div><b>~${fk(R.gsf)} SF</b><div class="kn">incl. circulation</div></div>
-      <div class="kpi"><div class="kl">Density</div><b>${R.dua?Math.round(R.dua):'—'}</b><div class="kn">units / acre</div></div>
-      <div class="kpi"><div class="kl">FAR</div><b>${R.far?R.far.toFixed(2):'—'}</b><div class="kn">gross / lot</div></div>
-      <div class="kpi"><div class="kl">Parking</div><b>${R.park}</b><div class="kn">spaces planned</div></div>
+/* ---- custom layout editor ---- */
+function enterEdit(floor){
+  if(!S.pro) return openPro('The custom layout editor is part of full access:');
+  const M=model(); const k=layKey(floor);
+  if(!S.layouts[k]) S.layouts[k]=JSON.parse(JSON.stringify(sfhAutoRooms(M,floor)));
+  EDIT={on:true,floor,sel:-1}; save(); run();
+}
+function exitEdit(){ EDIT={on:false,floor:0,sel:-1}; save(); run(); }
+function resetFloor(floor){ delete S.layouts[layKey(floor)]; EDIT={on:false,floor:0,sel:-1}; save(); run(); toast('Floor reset to auto layout'); }
+function edAdd(){ const k=layKey(EDIT.floor); const nm=prompt('Room name:','ROOM'); if(!nm)return;
+  S.layouts[k].push({n:nm.toUpperCase(),x:2,y:2,w:10,h:10}); EDIT.sel=S.layouts[k].length-1; save(); run(); }
+function edDup(){ const k=layKey(EDIT.floor); if(EDIT.sel<0)return toast('Select a room first');
+  const r=S.layouts[k][EDIT.sel]; S.layouts[k].push({n:r.n,x:Math.min(r.x+2,999),y:r.y+2,w:r.w,h:r.h});
+  EDIT.sel=S.layouts[k].length-1; save(); run(); toast('Duplicated \u2014 overlap same-name blocks to form L-shapes'); }
+function edRename(){ const k=layKey(EDIT.floor); if(EDIT.sel<0)return toast('Select a room first');
+  const nm=prompt('Room name:',S.layouts[k][EDIT.sel].n); if(!nm)return; S.layouts[k][EDIT.sel].n=nm.toUpperCase(); save(); run(); }
+function edDims(){ const k=layKey(EDIT.floor); if(EDIT.sel<0)return toast('Select a room first');
+  const r=S.layouts[k][EDIT.sel];
+  const v=prompt('Width x Depth in feet (e.g. 12x14):',Math.round(r.w)+'x'+Math.round(r.h)); if(!v)return;
+  const m=v.toLowerCase().split(/[x\u00d7]/); const w=parseFloat(m[0]),h=parseFloat(m[1]);
+  if(w>=3&&h>=3){r.w=w;r.h=h;save();run();} else toast('Minimum room size is 3\u00d73 ft'); }
+function edDel(){ const k=layKey(EDIT.floor); if(EDIT.sel<0)return toast('Select a room first');
+  S.layouts[k].splice(EDIT.sel,1); EDIT.sel=-1; save(); run(); }
+let DRAG=null;
+function bindEditor(floor){
+  const svg=document.getElementById('plateSvg'+floor); if(!svg)return;
+  const M=model(); const sc=+svg.dataset.sc, pad=+svg.dataset.pad;
+  const pt=e=>{ const r=svg.getBoundingClientRect();
+    const vs=svg.viewBox.baseVal; const k=vs.width/r.width;
+    return {x:((e.clientX-r.left)*k-pad)/sc, y:((e.clientY-r.top)*k-pad)/sc}; };
+  svg.addEventListener('pointerdown',e=>{
+    const g=e.target.closest('.room-sel'); const k=layKey(floor);
+    if(!g){EDIT.sel=-1;run();return;}
+    const i=+g.dataset.i; EDIT.sel=i;
+    const r=S.layouts[k][i]; const p=pt(e);
+    const onHandle=(p.x>r.x+r.w-2.2)&&(p.y>r.y+r.h-2.2);
+    DRAG={i,mode:onHandle?'resize':'move',dx:p.x-r.x,dy:p.y-r.y};
+    svg.setPointerCapture(e.pointerId);
+    run(); requestAnimationFrame(()=>bindEditor(floor));
+  });
+  svg.addEventListener('pointermove',e=>{
+    if(!DRAG)return; const k=layKey(floor); const r=S.layouts[k][DRAG.i]; if(!r)return;
+    const p=pt(e);
+    if(DRAG.mode==='move'){
+      r.x=Math.round(Math.max(0,Math.min(M.bw-r.w,p.x-DRAG.dx)));
+      r.y=Math.round(Math.max(0,Math.min(M.bd-r.h,p.y-DRAG.dy)));
+    } else {
+      r.w=Math.round(Math.max(3,Math.min(M.bw-r.x,p.x-r.x)));
+      r.h=Math.round(Math.max(3,Math.min(M.bd-r.y,p.y-r.y)));
+    }
+    const el=document.getElementById('plateSvg'+floor);
+    if(el){ const card=el.closest('.planwrap'); card.innerHTML=sfhPlate(M,floor,S.mep&&S.pro); bindEditor(floor); }
+  });
+  const up=e=>{ if(DRAG){DRAG=null;save();run();} };
+  svg.addEventListener('pointerup',up); svg.addEventListener('pointercancel',up);
+}
+/* ============ TH PLATE ============ */
+function thPlate(M,floor,showMEP){
+  const maxW=560,pad=30;
+  const sc=Math.min((maxW-pad*2)/M.bw, 300/M.bd);
+  const W=M.bw*sc+pad*2,H=M.bd*sc+pad*2+34;
+  const X=pad,Y=pad;
+  const n=M.units, uw=M.bw/n;
+  let s=svgOpen(W,H);
+  s+=R(X,Y,M.bw*sc,M.bd*sc,{s:'#60a5fa',sw:2});
+  for(let i=0;i<n;i++){
+    const ux=X+i*uw*sc;
+    if(i>0) s+=L(ux,Y,ux,Y+M.bd*sc,{s:'#3a4757',sw:2});
+    const label=floor===1?'LIVING + KITCHEN':(($('thBeds').value||3)+' BEDS + BATHS');
+    s+=T(ux+uw*sc/2,Y+M.bd*sc/2-3,'UNIT '+(i+1),{a:'middle',z:8.5,f:'#cfd9e4',w:700});
+    s+=T(ux+uw*sc/2,Y+M.bd*sc/2+9,label,{a:'middle',z:7.5,f:'#96a6b6'});
+    s+=T(ux+uw*sc/2,Y+12,Math.round(uw)+"' wide",{a:'middle',z:7,f:'#5e7080'});
+  }
+  if(showMEP){
+    // shared wet walls at party walls (back-to-back baths/kitchens)
+    for(let i=1;i<n;i+=1){
+      const ux=X+i*uw*sc;
+      s+=L(ux,Y+M.bd*sc*0.35,ux,Y+M.bd*sc*0.75,{s:'#2dd4bf',sw:3});
+    }
+    s+=T(X+M.bw*sc/2,Y+M.bd*sc+14,'teal party walls = back-to-back plumbing (cost saver)',{a:'middle',z:7.5,f:'#2dd4bf'});
+  }
+  s+=T(X,H-6,'FLOOR '+floor+' \u00b7 schematic \u2014 not for construction',{z:8,f:'#5e7080'});
+  s+='</svg>';
+  return s;
+}
+
+/* ============ MF PLATE ============ */
+function mfPlate(M,floor,showMEP){
+  const maxW=560,pad=30;
+  const sc=Math.min((maxW-pad*2)/M.bw, 320/M.bd);
+  const W=M.bw*sc+pad*2,H=M.bd*sc+pad*2+34;
+  const X=pad,Y=pad;
+  const corr=6, ud=(M.bd-corr)/2;
+  const mix=window.__MIX||{st:0,b1:0,b2:0,b3:0};
+  // per-floor allocation
+  const per={};
+  ['st','b1','b2','b3'].forEach(k=>{
+    const base=Math.floor(mix[k]/M.stories), extra=mix[k]%M.stories;
+    per[k]=base+(floor<=extra?1:0);
+  });
+  const coreW=16, elev=M.stories>=3;
+  let s=svgOpen(W,H);
+  s+=R(X,Y,M.bw*sc,M.bd*sc,{s:'#60a5fa',sw:2});
+  // cores
+  s+=R(X,Y,coreW*sc,M.bd*sc,{f:'rgba(94,112,128,.15)',s:'#3a4757',sw:1});
+  s+=T(X+coreW*sc/2,Y+M.bd*sc/2,'STAIR',{a:'middle',z:7.5,f:'#96a6b6',r:-90});
+  s+=R(X+M.bw*sc-coreW*sc,Y,coreW*sc,M.bd*sc,{f:'rgba(94,112,128,.15)',s:'#3a4757',sw:1});
+  s+=T(X+M.bw*sc-coreW*sc/2,Y+M.bd*sc/2,'STAIR',{a:'middle',z:7.5,f:'#96a6b6',r:-90});
+  // corridor
+  const cy=Y+ud*sc;
+  s+=R(X+coreW*sc,cy,(M.bw-2*coreW)*sc,corr*sc,{f:'rgba(96,165,250,.08)'});
+  s+=T(X+M.bw*sc/2,cy+corr*sc/2+3,'CORRIDOR',{a:'middle',z:7.5,f:'#60a5fa'});
+  // build unit list for this floor
+  let list=[];
+  for(let i=0;i<per.b3;i++)list.push(['3BR',UNITSZ.b3]);
+  for(let i=0;i<per.b2;i++)list.push(['2BR',UNITSZ.b2]);
+  for(let i=0;i<per.b1;i++)list.push(['1BR',UNITSZ.b1]);
+  for(let i=0;i<per.st;i++)list.push(['ST',UNITSZ.st]);
+  if(floor===1&&elev===false){}
+  // lobby on floor 1
+  let avail=M.bw-2*coreW;
+  let rows=[[],[]]; let used=[0,0];
+  if(floor===1){ rows[0].push(['LOBBY / MAIL',260]); used[0]+=260/ud; }
+  if(elev){ rows[1].push(['ELEV',80]); used[1]+=80/ud; }
+  list.forEach(u=>{
+    const w=u[1]/ud;
+    const r=used[0]<=used[1]?0:1;
+    if(used[r]+w<=avail+0.01){rows[r].push(u);used[r]+=w;}
+    else if(used[1-r]+w<=avail+0.01){rows[1-r].push(u);used[1-r]+=w;}
+    else rows[2]=rows[2]||[],rows[2].push(u);
+  });
+  const drawRow=(row,top)=>{
+    let cx=X+coreW*sc;
+    row.forEach(u=>{
+      const w=(u[1]/ud)*sc;
+      const y=top?Y:cy+corr*sc;
+      s+=R(cx,y,w,ud*sc,{s:'#3a4757',sw:1});
+      s+=T(cx+w/2,y+ud*sc/2-2,u[0],{a:'middle',z:8,f:'#cfd9e4',w:600});
+      s+=T(cx+w/2,y+ud*sc/2+9,fk(u[1])+' SF',{a:'middle',z:6.8,f:'#5e7080'});
+      cx+=w;
+    });
+  };
+  drawRow(rows[0],true); drawRow(rows[1],false);
+  if(showMEP){
+    // wet stack markers between back-to-back kitchens/baths along corridor walls
+    s+=L(X+coreW*sc,cy,X+M.bw*sc-coreW*sc,cy,{s:'#2dd4bf',sw:2.5});
+    s+=L(X+coreW*sc,cy+corr*sc,X+M.bw*sc-coreW*sc,cy+corr*sc,{s:'#2dd4bf',sw:2.5});
+    s+=T(X+M.bw*sc/2,Y+12,'stack wet walls along corridor \u2014 units plumb back-to-back floor over floor',{a:'middle',z:7,f:'#2dd4bf'});
+    // mech/utility
+    s+=mep(X+M.bw*sc-coreW*sc-12,Y+M.bd*sc-12,'E');
+    s+=T(X+M.bw*sc-coreW*sc-22,Y+M.bd*sc-9,'meter / utility rm',{a:'end',z:6.8,f:'#5e7080'});
+  }
+  const over=rows[2]&&rows[2].length;
+  s+=T(X,H-6,'FLOOR '+floor+' \u00b7 schematic \u2014 not for construction'+(over?' \u00b7 \u26a0 '+rows[2].length+' unit(s) don\u2019t fit this plate':''),{z:8,f:over?'#eab308':'#5e7080'});
+  s+='</svg>';
+  return s;
+}
+
+/* ============ RENDER ============ */
+function run(){
+  const M=model();
+  const out=$('results');
+  const nm=($('pname').value||'').trim()||'Untitled scheme';
+  if(!M.lotW||!M.lotD){out.innerHTML='<div class="card"><h4>Waiting on the lot</h4><p style="color:var(--dim);font-size:13.5px">Enter lot width and depth &mdash; or load the example &mdash; and the site plan draws itself here.</p></div>';return;}
+
+  const flags=M.flags.map(f=>`<div class="flag ${f.t==='err'?'err':''}">${f.m}</div>`).join('');
+
+  /* plates by type */
+  const plateFn = TYPE==='sfh'?sfhPlate : TYPE==='th'?thPlate : mfPlate;
+  const nPlates = TYPE==='sfh'?M.stories : TYPE==='th'?2 : M.stories;
+  let plates='';
+  for(let f=1;f<=nPlates;f++){
+    const locked = !S.pro && f>1;
+    const showMEP = S.mep && S.pro;
+    const editing = EDIT.on&&EDIT.floor===f&&TYPE==='sfh';
+    const edbar = TYPE!=='sfh'?'':(editing?
+      `<div class="edtb">
+         <button onclick="edAdd()">+ Add room</button>
+         <button onclick="edDup()">Duplicate (L-shape)</button>
+         <button onclick="edDims()">Set W×D&hellip;</button>
+         <button onclick="edRename()">Rename</button>
+         <button class="warn" onclick="edDel()">Delete</button>
+         <button onclick="resetFloor(${f})">Reset to auto</button>
+         <button class="pri" onclick="exitEdit()">Done editing</button>
+       </div>`
+      :`<div class="edtb"><button onclick="enterEdit(${f})">${S.pro?'':'&#128274; '}&#9998; Customize this floor${isCustom(f)?' (custom)':''}</button>${isCustom(f)&&S.pro?`<button onclick="resetFloor(${f})">Reset to auto</button>`:''}</div>`);
+    plates+=`<div class="card"><h4>Floor plate ${nPlates>1?f:''} <span class="sub">${TYPE==='sfh'?'single-family schematic':(TYPE==='th'?'townhouse row':'double-loaded corridor')}</span></h4>
+      ${locked?'':edbar}
+      <div class="planwrap">${locked?'':plateFn(M,f,showMEP)}
+        ${!S.pro&&f===1?'<div class="wm"><span>SITESHAPER PREVIEW</span></div>':''}
+        ${locked?`<div style="height:150px"></div><div class="lockover"><b>&#128274; Floor ${f} is in the full scheme</b><span>Unlock every plate, the MEP location layer, the custom layout editor, and the printable scheme book.</span><button class="lockbtn" onclick="openPro()">Unlock &mdash; ${PRICE_TXT}</button></div>`:''}
+      </div>
+      ${editing?'<div class="edhint">Click a room to select · drag to move · drag the gold corner to resize · duplicate + overlap same-name blocks to build L-shapes · 1-ft snap</div>':''}
+      ${f===1&&S.pro&&S.mep&&TYPE==='sfh'?MEP_LEGEND:''}
+    </div>`;
+  }
+
+  const mepToggle = `<div class="togglerow">
+    <button class="tgl ${S.mep&&S.pro?'on':''} ${S.pro?'':'lockedtgl'}" onclick="toggleMEP()">${S.pro?'':'&#128274; '}MEP locations ${S.mep&&S.pro?'ON':'OFF'}</button>
+    <span class="mini" style="margin:0">${S.pro?'Plumbing groups, panel, HVAC, water heater, condenser + wet walls':'MEP layer unlocks with full access'}</span>
+  </div>`;
+
+  const est = TYPE==='mf' ? `<tr><td>Efficiency (net / gross)</td><td>${Math.round(M.net/M.gsf*100)}%</td></tr>` : '';
+  const numbers=`<table>
+    <tr><th>Metric</th><th style="text-align:right">Value</th></tr>
+    <tr><td>Lot</td><td>${M.lotW}' \u00d7 ${M.lotD}' \u00b7 ${fk(M.lotW*M.lotD)} SF (${M.acres.toFixed(2)} ac)</td></tr>
+    <tr><td>Buildable envelope</td><td>${Math.round(M.envW)}' \u00d7 ${Math.round(M.envD)}' \u00b7 ${fk(M.envW*M.envD)} SF</td></tr>
+    <tr><td>Footprint</td><td>${Math.round(M.bw)}' \u00d7 ${Math.round(M.bd)}' \u00b7 ${fk(M.foot)} SF</td></tr>
+    <tr><td>Lot coverage</td><td>${Math.round(M.cov*100)}%</td></tr>
+    <tr><td>Gross area (GSF)</td><td>${fk(M.gsf)} SF \u00b7 ${M.stories} ${M.stories>1?'stories':'story'}</td></tr>
+    <tr><td>FAR</td><td>${M.far.toFixed(2)}</td></tr>
+    <tr><td>Homes / units</td><td>${M.units} \u00b7 ${M.dua?M.dua.toFixed(1):'\u2014'} per acre</td></tr>
+    ${est}
+    <tr><td>Parking</td><td>${M.stalls} stalls \u00b7 ~${fk(M.parkSF)} SF (${PARK==='drive'?'driveway':'surface'})</td></tr>
+    <tr><td>Est. building height</td><td>~${M.stories*11+4} ft</td></tr>
+  </table>`;
+
+  out.innerHTML=`
+    <div class="card"><h4>Site plan <span class="sub">${esc(nm)}${$('paddr').value?(' \u00b7 '+esc($('paddr').value)):''}</span></h4>
+      <div class="planwrap">${sitePlan(M)}</div>
+      ${flags}
     </div>
-    <h4>Massing snapshot</h4>
-    <div class="massing">${massing}</div>
-    ${flags.length?('<h4>Reality checks before the first meeting</h4>'+flags.map(f=>'<div class="flag">'+f+'</div>').join('')):''}
-    ${goalBlock}
-    ${mustBlock}
-    ${proSection}
-  </div>
-  <div class="rowbtns">
-    <button class="smallbtn" id="printBtn">&#128424; Print / save the brief ${S.pro?'':'&#128274;'}</button>
-    <button class="smallbtn" onclick="copyBrief()">&#128203; Copy as text</button>
-    <a class="smallbtn" href="${BIRDSEYE}" target="_blank" rel="noopener">&#129413; Get the zoning read (Bird&rsquo;s Eye)</a>
-  </div>
-  <div class="cta-neso"><p><b>Want senior eyes before you commit?</b> NESO&rsquo;s feasibility practice pressure-tests the program, the zoning path, and the numbers &mdash; run by planners and developers who&rsquo;ve carried projects like this through approval.</p><a href="${NESO_CTA}" target="_blank" rel="noopener">Have NESO review it &rarr;</a></div>`;
+    ${mepToggle}
+    ${plates}
+    <div class="card"><h4>The numbers</h4>${numbers}
+      <p class="mini" style="margin-top:9px">Schematic yields from standard planning assumptions \u2014 confirm all areas, heights, and requirements with your design professionals and local code.</p></div>
+    <div class="rowbtns">
+      <button class="smallbtn" id="printBtn">&#128424; Print scheme book ${S.pro?'':'&#128274;'}</button>
+      <a class="smallbtn" href="https://nesoai.github.io/buildbrief/" target="_blank" rel="noopener">&#128203; Write the intent brief (BuildBrief)</a>
+      <a class="smallbtn" href="https://nesoai.github.io/proforma/" target="_blank" rel="noopener">&#128200; Run the numbers (ProForma)</a>
+    </div>
+    <div class="cta-neso"><p><b>Want planner eyes on the scheme?</b> NESO&rsquo;s feasibility practice \u2014 urban planners and an engineer who speak fluent architect \u2014 pressure-tests the program, zoning path, and numbers before you spend design fees.</p><a href="${NESO_CTA}" target="_blank" rel="noopener">Have NESO review it &rarr;</a></div>`;
 
-  $('printBtn').onclick=()=>{ if(!S.pro) return openPro('The print-ready brief is a Pro feature:'); window.print(); };
+  $('printBtn').onclick=()=>{ if(!S.pro) return openPro('The printable scheme book is part of full access:'); window.print(); };
+  if(EDIT.on&&TYPE==='sfh') bindEditor(EDIT.floor);
 }
-function copyBrief(){
-  const t=document.querySelector('.brief'); if(!t)return;
-  navigator.clipboard&&navigator.clipboard.writeText(t.innerText).then(()=>toast('Brief copied as text'),()=>toast('Select and copy manually'));
-}
+function toggleMEP(){ if(!S.pro) return openPro('The MEP location layer is part of full access:'); S.mep=!S.mep; save(); run(); }
 
 /* ============ EXAMPLE ============ */
 function loadExample(){
-  $('pname').value='Cedar & Vine';
-  $('paddr').value='412 Cedar Street (corner lot)';
-  $('lotIn').value=21800; $('zonIn').value='R-3 (assumed)';
-  TYPE='smf'; STAGE='contract'; WHO=new Set(['wf','fam']); CHAR=new Set(['modern','ctx']); PRIO=new Set(['afford','dur','green']); BUD='b3';
-  [['typeRow',TYPE],['stageRow',STAGE],['budRow',BUD]].forEach(([r,v])=>$(r).querySelectorAll('.seg').forEach(x=>x.classList.toggle('on',x.dataset.v===v)));
-  $('whoRow').querySelectorAll('.seg').forEach(x=>x.classList.toggle('on',WHO.has(x.dataset.v)));
-  $('charRow').querySelectorAll('.seg').forEach(x=>x.classList.toggle('on',CHAR.has(x.dataset.v)));
-  $('prioRow').querySelectorAll('.seg').forEach(x=>x.classList.toggle('on',PRIO.has(x.dataset.v)));
-  $('uSt').value=0; $('u1').value=4; $('u2').value=6; $('u3').value=2;
-  $('stories').value=3; $('pratio').value=1;
-  $('musts').value='In-unit laundry; two ground-floor accessible units; durable exterior (fiber cement or brick)';
-  $('nevers').value='No basement units; no shared laundry';
-  $('goal').value='Twelve well-built homes working families can actually afford, on a corner the neighborhood is proud of — and a project a local lender will bank.';
+  $('pname').value='Juniper Court';
+  $('paddr').value='412 Juniper Ct, Fairfield, CT';
+  TYPE='sfh'; GAR='2'; PARK='drive';
+  segInit('typeRow',TYPES,()=>TYPE,v=>TYPE=v);
+  segInit('garRow',GARS,()=>GAR,v=>GAR=v);
+  segInit('parkRow',PARKS,()=>PARK,v=>PARK=v);
+  onType();
+  $('lotW').value=62;$('lotD').value=125;$('sbF').value=20;$('sbS').value=7;$('sbR').value=20;
+  $('beds').value=4;$('baths').value=2.5;$('sfhStories').value=2;$('sfhSF').value=2100;
+  $('pratio').value=2;$('offF').value=0;$('offS').value=0;
   run();
   $('exBanner').style.display='block';
-  toast('Example loaded \u2014 edit anything, it\u2019s yours now');
-  try{ if(typeof gtag==='function') gtag('event','example_load',{tool:'buildbrief'}); }catch(e){}
+  toast('Example loaded \u2014 reshape it into your project');
+  try{ if(typeof gtag==='function') gtag('event','example_load',{tool:'siteshaper'}); }catch(e){}
 }
 $('exBtn').onclick=loadExample;
 
@@ -413,9 +752,9 @@ $('exBtn').onclick=loadExample;
 const REDEEM_URL='https://neso-pro.nesoai-us.workers.dev/redeem';
 async function redeemCode(c){
   c=(c||'').trim().toUpperCase();
-  if(!/^BLD-[A-Z0-9]{4}-[A-Z0-9]{4}$/.test(c)) return {ok:false,msg:'That code doesn\u2019t look right'};
+  if(!/^SSH-[A-Z0-9]{4}-[A-Z0-9]{4}$/.test(c)) return {ok:false,msg:'That code doesn\u2019t look right'};
   try{
-    const r=await fetch(REDEEM_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({tool:'buildbrief',code:c})});
+    const r=await fetch(REDEEM_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({tool:'siteshaper',code:c})});
     const j=await r.json();
     if(j.ok) return {ok:true};
     if(j.reason==='used') return {ok:false,msg:'That code has already been used'};
@@ -426,36 +765,37 @@ function openModal(t,b){$('mTitle').textContent=t;$('mBody').innerHTML=b;$('moda
 $('mClose').onclick=()=>$('modal').classList.remove('on');
 $('modal').onclick=e=>{if(e.target.id==='modal')$('modal').classList.remove('on');};
 function openPro(msg){
-  openModal('BuildBrief Pro',`<p>${msg||'One unlock, yours forever on this device:'}</p>
+  openModal('SiteShaper — full access',`<p>${msg||'One unlock, yours forever on this device:'}</p>
    <ul style="color:var(--dim);font-size:13.5px;line-height:1.9;padding-left:18px;margin:8px 0 14px">
-     <li>The pro-translation layer &mdash; your program in architect language</li>
-     <li>Five first-meeting questions + the bring-with-you checklist</li>
-     <li>Print-ready brief to hand across the table</li></ul>
-   <a class="lockbtn" href="${BUY_URL}" target="_blank" rel="noopener">Request Pro &mdash; ${PRICE_TXT} &rarr;</a>
+     <li>Every floor plate (free previews the ground floor)</li>
+     <li>The MEP location layer &mdash; plumbing groups, panel, HVAC, water heater, condenser &amp; wet walls</li>\n     <li>The custom layout editor &mdash; drag rooms, set exact dimensions, build L-shapes</li>
+     <li>The printable scheme book &mdash; watermark-free, ready to hand to your architect</li>
+     <li>All three building types: single-family, townhouse rows, multifamily</li></ul>
+   <a class="lockbtn" href="${BUY_URL}" target="_blank" rel="noopener">Get full access &mdash; ${PRICE_TXT} &rarr;</a>
    <div style="display:flex;gap:8px;align-items:center;margin-top:14px">
-     <input class="tin" id="codeIn" placeholder="BLD-XXXX-XXXX" style="flex:1">
+     <input class="tin" id="codeIn" placeholder="SSH-XXXX-XXXX" style="flex:1">
      <button class="lockbtn" id="applyCode" style="background:var(--green);color:#04211a;margin:0">Apply</button></div>`);
   $('applyCode').onclick=async()=>{const b=$('applyCode');b.disabled=true;b.textContent='\u2026';
     const r=await redeemCode($('codeIn').value);b.disabled=false;b.textContent='Apply';
-    if(r.ok){S.pro=true;save();proUI();$('modal').classList.remove('on');toast('\ud83c\udf89 Pro unlocked');run();}
+    if(r.ok){S.pro=true;save();proUI();$('modal').classList.remove('on');toast('\ud83c\udf89 Full access unlocked');run();}
     else toast(r.msg);};
 }
-function proUI(){$('proBtn').textContent=S.pro?'\u2713 Pro':'Go Pro';$('proBtn').className='pill '+(S.pro?'prodone':'pro');}
-$('proBtn').onclick=()=>S.pro?toast('Pro is active on this device \u2713'):openPro();
+function proUI(){$('proBtn').textContent=S.pro?'\u2713 Full access':'Unlock full access';$('proBtn').className='pill '+(S.pro?'prodone':'pro');}
+$('proBtn').onclick=()=>S.pro?toast('Full access is active on this device \u2713'):openPro();
 
 /* ============ TOUR ============ */
 const TOUR=[
- ['typeRow','Step 1 of 5','Start with <b>the shape of the project</b> \u2014 type, site, and stage. The brief adapts its language and reality-checks to what you pick.'],
- ['whoRow','Step 2 of 5','<b>Who it\u2019s for drives everything</b> \u2014 unit sizes, finishes, parking, even financing. Naming your resident first is what pros wish every owner did.'],
- ['prioRow','Step 3 of 5','<b>Priorities are the trade-off map.</b> When budget pressure comes (it will), this list tells your architect what to protect and what can flex.'],
- ['out','Step 4 of 5','The <b>brief writes itself</b> \u2014 quick numbers, a massing snapshot, reality checks, and (in Pro) your vision restated in architect language.'],
- ['exBtn','Step 5 of 5','Fastest way to learn it: <b>load the example</b> and reshape it into your project. Nothing is saved anywhere but this device.']
+ ['lotW','Step 1 of 5','Start with <b>the lot and setbacks</b> \u2014 the dashed buildable envelope draws itself, and everything must fit inside it. This is the conversation zoning actually has with your project.'],
+ ['typeRow','Step 2 of 5','<b>Pick the building type.</b> Single-family gets full room-by-room plates with MEP locations; townhouse rows and multifamily get unit layouts, cores, and corridors.'],
+ ['sfhSF','Step 3 of 5','<b>Set the program</b> \u2014 beds, baths, stories, area. SiteShaper computes the footprint and warns you the moment something doesn\u2019t fit the envelope.'],
+ ['out','Step 4 of 5','The <b>scheme draws live</b>: site plan with dimensions, floor plates with room sizes, wet walls and MEP markers (full access), and the numbers table your pro will ask for.'],
+ ['exBtn','Step 5 of 5','Fastest way to learn it: <b>load Juniper Court</b> and reshape it. Then print the scheme book and hand it across the table. Nothing you enter leaves this device.']
 ];
 let tourI=-1;
 function tourClear(){document.querySelectorAll('.tourhl').forEach(e=>e.classList.remove('tourhl'));}
 function tourShow(i){
   tourClear();
-  if(i>=TOUR.length){ $('tourCard').classList.remove('on'); try{localStorage.setItem('buildbrief.tour','done')}catch(e){}; return; }
+  if(i>=TOUR.length){ $('tourCard').classList.remove('on'); try{localStorage.setItem('siteshaper.tour','done')}catch(e){}; return; }
   tourI=i; const [id,st,tx]=TOUR[i];
   const el=$(id); if(el){ el.classList.add('tourhl'); el.scrollIntoView({behavior:'smooth',block:'center'}); }
   $('tourStep').textContent=st; $('tourText').innerHTML=tx;
@@ -465,8 +805,8 @@ function tourShow(i){
 $('tourNext').onclick=()=>tourShow(tourI+1);
 $('tourSkip').onclick=()=>tourShow(TOUR.length);
 $('tourBtn').onclick=()=>tourShow(0);
-setTimeout(()=>{ try{ if(!localStorage.getItem('buildbrief.tour')) tourShow(0); }catch(e){} },1100);
+setTimeout(()=>{ try{ if(!localStorage.getItem('siteshaper.tour')) tourShow(0); }catch(e){} },1100);
 
-proUI(); run();
+onType(); proUI(); run();
 </script>
 </body></html>
