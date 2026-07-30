@@ -122,11 +122,21 @@ footer{border-top:1px solid var(--line);padding:20px 18px;font-size:12px;color:v
 #scrollTop.on{display:flex}
 #scrollTop:hover{filter:brightness(1.12)}
 @media print{#scrollTop{display:none!important}}
+
+/* "By NESO" byline — v2 house rule: every tool says whose it is, quietly, under
+   its own name. The tools are the top of NESO's funnel; a visitor who likes one
+   and cannot tell who made it is a lead lost to good work. */
+#logo{position:relative}
+#logo .byneso{display:block;font-family:Inter,system-ui,sans-serif;font-size:9.5px;font-weight:600;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--faint,#8698aa);margin-top:1px}
+#logo .byneso a{color:inherit;text-decoration:none;border-bottom:1px solid transparent}
+#logo .byneso a:hover{color:var(--ink,#e9eef4);border-bottom-color:currentColor}
+#logo .lgwrap{display:flex;flex-direction:column;line-height:1.12}
 </style>
 </head>
 <body>
 <header>
-  <div id="logo"><svg width="25" height="25" viewBox="0 0 32 32"><path d="M8 24 V14 L16 8 L24 14 V24 H18 V18 H14 V24 Z" fill="none" stroke="#f472b6" stroke-width="2.2" stroke-linejoin="round"/></svg> Build<b>Brief</b></div>
+  <div id="logo"><svg width="25" height="25" viewBox="0 0 32 32"><path d="M8 24 V14 L16 8 L24 14 V24 H18 V18 H14 V24 Z" fill="none" stroke="#f472b6" stroke-width="2.2" stroke-linejoin="round"/></svg><span class="lgwrap"><span>Build<b>Brief</b></span><span class="byneso"><a href="https://nesohq.com/" target="_blank" rel="noopener">by NESO</a></span></span></div>
   <div class="hsp"></div>
   <button class="pill" id="tourBtn" title="Replay the 60-second tour">&#127891; Tour</button>
   <button class="pill pro" id="proBtn">Go Pro</button>
@@ -319,20 +329,59 @@ function run(){
   if((+$('stories').value||1)>=5) flags.push('<b>Construction class:</b> at '+$('stories').value+' stories the likely structure is '+conType()+' — a cost-class jump worth pricing before falling in love with the height.');
   if(!$('zonIn').value.trim()) flags.push('<b>Zoning unknown:</b> the single fastest de-risk is a zoning read — what&rsquo;s allowed by right, and what needs relief. (Bird&rsquo;s Eye does this in two business days.)');
 
-  /* massing svg */
-  const W=340,H=200,pad=18;
-  const lotRatio=Math.min(1,R.lot? (R.foot+R.parkSF)/R.lot :0);
+  /* massing svg — v1.9
+     The v1.9 snapshot was two flat rectangles with a dashed lot line, which is
+     the same "it is just a rectangle" impression SiteShaper was marked down for.
+     It now reads as a site diagram: setback line inside the lot boundary, the
+     building drawn with a real footprint AND a stacked-storey silhouette so the
+     height is visible, a street edge with a frontage arrow, parking laid out as
+     stalls rather than a blank block, and a dimension note that says what is
+     measured. Still explicitly diagrammatic — the label says so, because that
+     is honest and because Bird's Eye is what a real site plan costs. */
+  const W=340,H=210,pad=20;
   const lotW=W-pad*2, lotH=H-pad*2;
-  const bldgW=Math.max(24,Math.sqrt(Math.max(0.02,R.foot/(R.lot||1)))*lotW);
-  const bldgH=Math.max(20,Math.sqrt(Math.max(0.02,R.foot/(R.lot||1)))*lotH*0.9);
-  const pW=Math.max(0,Math.min(lotW-bldgW-14,Math.sqrt(Math.max(0,R.parkSF/(R.lot||1)))*lotW));
-  const massing=`<svg viewBox="0 0 ${W} ${H+34}" xmlns="http://www.w3.org/2000/svg">
-    <rect x="${pad}" y="${pad}" width="${lotW}" height="${lotH}" fill="none" stroke="#3a4757" stroke-dasharray="5 4" rx="4"/>
-    <rect x="${pad+10}" y="${pad+10}" width="${bldgW}" height="${bldgH}" fill="rgba(244,114,182,.18)" stroke="#f472b6" stroke-width="1.5" rx="3"/>
-    <text x="${pad+10+bldgW/2}" y="${pad+10+bldgH/2+4}" fill="#f4a9cf" font-size="11" text-anchor="middle" font-family="Inter">${R.stories} stories</text>
-    ${pW>12?`<rect x="${pad+lotW-pW-10}" y="${pad+lotH-Math.min(56,lotH*0.4)-10}" width="${pW}" height="${Math.min(56,lotH*0.4)}" fill="rgba(234,179,8,.12)" stroke="#eab308" stroke-width="1" rx="3"/><text x="${pad+lotW-pW/2-10}" y="${pad+lotH-Math.min(56,lotH*0.4)/2-4}" fill="#d9b44a" font-size="9.5" text-anchor="middle" font-family="Inter">parking</text>`:''}
-    <text x="${pad}" y="${H+18}" fill="#5e7080" font-size="10" font-family="Inter">Lot ${fk(R.lot)} SF &middot; footprint ~${fk(R.foot)} SF (${Math.round(R.cov*100)}% coverage) &middot; open ~${fk(R.openSF)} SF</text>
-    <text x="${pad}" y="${H+31}" fill="#5e7080" font-size="10" font-family="Inter">Proportions are diagrammatic — not a site plan.</text>
+  const sb=7;                                       /* nominal setback inset */
+  const cov=Math.max(0.02,Math.min(0.9,R.lot?R.foot/R.lot:0.2));
+  const parkFrac=Math.max(0,Math.min(0.55,R.lot?R.parkSF/R.lot:0));
+  const buildBand=lotH-2*sb-(parkFrac>0.04?Math.min(58,lotH*0.36):0)-6;
+  const bldgW=Math.max(30,Math.min(lotW-2*sb, (lotW-2*sb)*Math.min(1,Math.sqrt(cov)*1.25)));
+  const bldgH=Math.max(24,Math.min(buildBand, buildBand*Math.min(1,Math.sqrt(cov)*1.25)));
+  const bx=pad+sb+((lotW-2*sb-bldgW)/2), by=pad+sb;
+  const stH=Math.max(3,Math.min(9,bldgH/Math.max(1,R.stories)/1.6));
+  /* storey lines inside the footprint: cheap, and the only cue that says height */
+  let storeys='';
+  for(let i=1;i<Math.min(R.stories,8);i++){
+    storeys+=`<line x1="${(bx+4).toFixed(1)}" y1="${(by+bldgH-i*stH).toFixed(1)}" x2="${(bx+bldgW-4).toFixed(1)}" y2="${(by+bldgH-i*stH).toFixed(1)}" stroke="#f472b6" stroke-width="0.7" opacity="0.5"/>`;
+  }
+  /* parking as stalls, not a blob */
+  let stalls='';
+  const pkH=Math.min(52,lotH*0.32);
+  const pkY=pad+lotH-sb-pkH;
+  if(parkFrac>0.04 && R.park>0){
+    const pkW=Math.max(40,Math.min(lotW-2*sb,(lotW-2*sb)*Math.min(1,Math.sqrt(parkFrac)*1.5)));
+    const pkX=pad+sb;
+    stalls+=`<rect x="${pkX}" y="${pkY.toFixed(1)}" width="${pkW.toFixed(1)}" height="${pkH.toFixed(1)}" fill="rgba(234,179,8,.09)" stroke="#eab308" stroke-width="1"/>`;
+    const n=Math.max(3,Math.min(14,R.park));
+    for(let i=1;i<n;i++){
+      const sx=pkX+pkW*i/n;
+      stalls+=`<line x1="${sx.toFixed(1)}" y1="${(pkY+pkH*0.42).toFixed(1)}" x2="${sx.toFixed(1)}" y2="${(pkY+pkH).toFixed(1)}" stroke="#eab308" stroke-width="0.6" opacity="0.75"/>`;
+    }
+    stalls+=`<line x1="${pkX}" y1="${(pkY+pkH*0.42).toFixed(1)}" x2="${(pkX+pkW).toFixed(1)}" y2="${(pkY+pkH*0.42).toFixed(1)}" stroke="#eab308" stroke-width="0.6" opacity="0.75"/>`;
+    stalls+=`<text x="${(pkX+pkW/2).toFixed(1)}" y="${(pkY+pkH*0.30).toFixed(1)}" fill="#d9b44a" font-size="9" text-anchor="middle" font-family="Inter">${R.park} stalls</text>`;
+  }
+  const massing=`<svg viewBox="0 0 ${W} ${H+42}" xmlns="http://www.w3.org/2000/svg">
+    <rect x="${pad}" y="${pad}" width="${lotW}" height="${lotH}" fill="none" stroke="#5e7080" stroke-width="1.3"/>
+    <rect x="${pad+sb}" y="${pad+sb}" width="${lotW-2*sb}" height="${lotH-2*sb}" fill="none" stroke="#3a4757" stroke-dasharray="4 4"/>
+    <text x="${pad+lotW-2}" y="${pad+sb-3}" fill="#3a4757" font-size="8" text-anchor="end" font-family="Inter">nominal setback</text>
+    <rect x="${bx.toFixed(1)}" y="${by.toFixed(1)}" width="${bldgW.toFixed(1)}" height="${bldgH.toFixed(1)}" fill="rgba(244,114,182,.16)" stroke="#f472b6" stroke-width="1.6"/>
+    ${storeys}
+    <text x="${(bx+bldgW/2).toFixed(1)}" y="${(by+bldgH/2-2).toFixed(1)}" fill="#f4a9cf" font-size="11" text-anchor="middle" font-family="Inter" font-weight="600">${R.units} units</text>
+    <text x="${(bx+bldgW/2).toFixed(1)}" y="${(by+bldgH/2+10).toFixed(1)}" fill="#f4a9cf" font-size="9" text-anchor="middle" font-family="Inter">${R.stories} storeys &middot; ~${fk(R.foot)} SF footprint</text>
+    ${stalls}
+    <line x1="${pad}" y1="${(pad+lotH+7).toFixed(1)}" x2="${pad+lotW}" y2="${(pad+lotH+7).toFixed(1)}" stroke="#5e7080" stroke-width="2.4"/>
+    <text x="${pad+lotW/2}" y="${(pad+lotH+18).toFixed(1)}" fill="#5e7080" font-size="8.5" text-anchor="middle" font-family="Inter" letter-spacing="1">STREET FRONTAGE</text>
+    <text x="${pad}" y="${H+26}" fill="#5e7080" font-size="10" font-family="Inter">Lot ${fk(R.lot)} SF &middot; footprint ~${fk(R.foot)} SF (${Math.round(R.cov*100)}% coverage) &middot; open ~${fk(R.openSF)} SF</text>
+    <text x="${pad}" y="${H+39}" fill="#5e7080" font-size="10" font-family="Inter">Diagrammatic \u2014 proportional, not surveyed. Setback shown is nominal until a zoning read confirms it.</text>
   </svg>`;
 
   /* pro translation */
