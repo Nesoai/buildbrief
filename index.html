@@ -6,6 +6,13 @@
 <title>BuildBrief — get your vision understood</title>
 <meta name="description" content="BuildBrief turns an early-stage housing idea into a professional Development Intent Brief — the numbers, priorities, and pro-ready language that make architects, GCs, and lenders understand your project the first time. Free, in your browser.">
 <link rel="canonical" href="https://buildbrief.nesohq.com/">
+<link rel="manifest" href="/manifest.webmanifest">
+<meta name="theme-color" content="#E7B84B">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="BuildBrief">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="mobile-web-app-capable" content="yes">
 <meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:-1">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="NESO">
@@ -335,7 +342,7 @@ var ASK_PAY_URL = "https://nesohq.gumroad.com/l/gugtzc";
   <dt>What is a massing diagram?</dt>
   <dd>A simple block representation of a building's volume, footprint and height on the site — no windows, no materials, no interior layout. It communicates scale and placement while making clear that design decisions are still open, which is exactly the right level of commitment before schematic design.</dd>
 </dl>
-<p class="nqa-foot">BuildBrief is free to run in your browser with no account. Pro is a one-time $29 unlock that adds the printable exhibit, editing and depth — owned forever, not a subscription. Built by <a href="https://nesohq.com/">NESO</a>, an advisory and tools practice for business and real estate. Questions: <a href="mailto:hello@nesohq.com">hello@nesohq.com</a>.</p>
+<p class="nqa-foot">BuildBrief is free to run in your browser with no account, and it installs — add it to your phone's home screen or your desktop and it opens in its own window, no app store and no account.  Pro is a one-time $29 unlock that adds the printable exhibit, editing and depth — owned forever, not a subscription. Built by <a href="https://nesohq.com/">NESO</a>, an advisory and tools practice for business and real estate. Questions: <a href="mailto:hello@nesohq.com">hello@nesohq.com</a>.</p>
 </section>
 <footer><span class="np">BuildBrief &middot; v1.15 &middot; &copy; 2026 NESO &mdash; all rights reserved &middot; <a href="https://neso-queue.nesoai-us.workers.dev/form/feedback?source=buildbrief" target="_blank" rel="noopener">Feedback</a> &middot; </span>Educational planning estimates. Works with <a href="https://proforma.nesohq.com/">ProForma</a> + <a href="https://birdseye.nesohq.com/">Bird&#8217;s Eye</a>.</footer>
 <div id="modal"><div id="mcard"><button class="closex" id="mClose">&times;</button><h2 id="mTitle"></h2><div id="mBody"></div></div></div>
@@ -662,4 +669,14 @@ proUI(); run();
 @media print{#toTop{display:none!important}}
 </style>
 <script>(function(){var b=document.getElementById('toTop');function chk(){if(window.scrollY>500)b.classList.add('on');else b.classList.remove('on');}window.addEventListener('scroll',chk,{passive:true});chk();})();</script>
+<script>
+/* Installable as a web app: manifest + icons + this registration. No store, no
+   review, no 15-30% platform fee on a digital unlock. The worker caches nothing
+   by design — see sw.js. */
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('/sw.js').catch(function () { /* not fatal */ });
+  });
+}
+</script>
 </body></html>
