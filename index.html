@@ -720,6 +720,8 @@ border-radius:999px;border:1.5px solid currentColor;background:transparent;color
     box.innerHTML = '<b>Install BuildBrief on this device</b>' +
       '<p>It opens in its own window, keeps working the same way, and takes about two seconds. ' +
       'Nothing is downloaded from a store and no account is created.</p>' +
+      '<p style="margin-top:7px"><b>If you are planning to buy Pro, install first, then enter your code.</b> ' +
+      'A code can only be redeemed once, and the installed app keeps its own unlock.</p>' +
       '<button type="button">Install BuildBrief</button>';
     box.style.display = 'block';
     box.querySelector('button').addEventListener('click', function(){
@@ -734,7 +736,9 @@ border-radius:999px;border:1.5px solid currentColor;background:transparent;color
       '<p>iPhone and iPad do this from the Share menu rather than a button:</p>' +
       '<ol><li>Tap the Share icon — the square with an arrow, at the bottom of Safari.</li>' +
       '<li>Scroll down and tap <b>Add to Home Screen</b>.</li>' +
-      '<li>Tap <b>Add</b>. BuildBrief appears with the other apps.</li></ol>';
+      '<li>Tap <b>Add</b>. BuildBrief appears with the other apps.</li></ol>' +
+      '<p style="margin-top:9px"><b>Buying Pro? Add to Home Screen first, then enter your code there.</b> ' +
+      'On iPhone the Home Screen app keeps its own unlock, separate from Safari, and a code can only be redeemed once.</p>';
     box.style.display = 'block';
   }
 })();
