@@ -167,7 +167,7 @@ footer{border-top:1px solid var(--line);padding:20px 18px;font-size:12px;color:v
   border-radius:999px;padding:10px 18px;text-decoration:none;margin-top:4px}
 @media print{.askc{display:none!important}}
 </style>
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "BuildBrief", "applicationCategory": "DesignApplication", "operatingSystem": "Any (web browser)", "url": "https://buildbrief.nesohq.com/", "description": "Turn an early housing idea into a Development Intent Brief an architect will read, with a massing diagram. Free in your browser; $29 for the artifact and editing.", "browserRequirements": "Runs in any modern browser. No account required.", "publisher": {"@type": "Organization", "name": "NESO", "url": "https://nesohq.com/", "email": "hello@nesohq.com", "telephone": "+1-901-295-0322"}, "offers": [{"@type": "Offer", "name": "BuildBrief (free)", "price": "0", "priceCurrency": "USD", "description": "The complete analysis with your own numbers, in the browser, with no account."}, {"@type": "Offer", "name": "BuildBrief Pro", "price": "29", "priceCurrency": "USD", "url": "https://buildbrief.nesohq.com/", "description": "One-time unlock, owned forever: print and export, editing, depth."}], "isAccessibleForFree": true}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "BuildBrief", "applicationCategory": "DesignApplication", "operatingSystem": "Any (web browser)", "url": "https://buildbrief.nesohq.com/", "description": "Turn an early housing idea into a Development Intent Brief an architect will read, with a massing diagram. Free in your browser; $29 for the artifact and editing.", "browserRequirements": "Runs in any modern browser. No account required.", "publisher": {"@type": "Organization", "name": "NESO", "url": "https://nesohq.com/", "telephone": "+1-901-295-0322"}, "offers": [{"@type": "Offer", "name": "BuildBrief (free)", "price": "0", "priceCurrency": "USD", "description": "The complete analysis with your own numbers, in the browser, with no account."}, {"@type": "Offer", "name": "BuildBrief Pro", "price": "29", "priceCurrency": "USD", "url": "https://buildbrief.nesohq.com/", "description": "One-time unlock, owned forever: print and export, editing, depth."}], "isAccessibleForFree": true}</script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What does an architect need from me before schematic design starts?", "acceptedAnswer": {"@type": "Answer", "text": "A written statement of intent: the site, the unit or space program, the budget range, the schedule, the parking and access assumptions, and the priorities you will not trade away. Arriving without those means the first billed hours are spent extracting them from conversation, usually twice."}}, {"@type": "Question", "name": "What is a development intent brief?", "acceptedAnswer": {"@type": "Answer", "text": "A short structured document that says what you are trying to build, for whom, at what cost, and what matters most when something has to give. It is not a design. Its job is to let an architect, a general contractor and a lender all start from the same set of facts."}}, {"@type": "Question", "name": "How do I explain my project to a contractor or lender without drawings?", "acceptedAnswer": {"@type": "Answer", "text": "Numbers and priorities, in that order: unit count and mix, gross square footage, target cost per square foot, site constraints you know about, and the three things that decide the project for you. A massing diagram helps them picture scale without implying a design you have not paid for yet."}}, {"@type": "Question", "name": "What is a massing diagram?", "acceptedAnswer": {"@type": "Answer", "text": "A simple block representation of a building's volume, footprint and height on the site — no windows, no materials, no interior layout. It communicates scale and placement while making clear that design decisions are still open, which is exactly the right level of commitment before schematic design."}}]}</script>
 </head>
 <body>
@@ -342,7 +342,7 @@ var ASK_PAY_URL = "https://nesohq.gumroad.com/l/gugtzc";
   <dt>What is a massing diagram?</dt>
   <dd>A simple block representation of a building's volume, footprint and height on the site — no windows, no materials, no interior layout. It communicates scale and placement while making clear that design decisions are still open, which is exactly the right level of commitment before schematic design.</dd>
 </dl>
-<p class="nqa-foot">BuildBrief is free to run in your browser with no account, and it installs — add it to your phone's home screen or your desktop and it opens in its own window, no app store and no account.  Pro is a one-time $29 unlock that adds the printable exhibit, editing and depth — owned forever, not a subscription. Built by <a href="https://nesohq.com/">NESO</a>, an advisory and tools practice for business and real estate. Questions: <a href="mailto:hello@nesohq.com">hello@nesohq.com</a>.</p>
+<p class="nqa-foot">BuildBrief is free to run in your browser with no account, and it installs — see below to put it on your phone or desktop.  Pro is a one-time $29 unlock that adds the printable exhibit, editing and depth — owned forever, not a subscription. Built by <a href="https://nesohq.com/">NESO</a>, an advisory and tools practice for business and real estate. Questions: <a href="https://neso-queue.nesoai-us.workers.dev/form/intake?source=tool-buildbrief">send them here</a>.</p>
 </section>
 <footer><span class="np">BuildBrief &middot; v1.15 &middot; &copy; 2026 NESO &mdash; all rights reserved &middot; <a href="https://neso-queue.nesoai-us.workers.dev/form/feedback?source=buildbrief" target="_blank" rel="noopener">Feedback</a> &middot; </span>Educational planning estimates. Works with <a href="https://proforma.nesohq.com/">ProForma</a> + <a href="https://birdseye.nesohq.com/">Bird&#8217;s Eye</a>.</footer>
 <div id="modal"><div id="mcard"><button class="closex" id="mClose">&times;</button><h2 id="mTitle"></h2><div id="mBody"></div></div></div>
@@ -679,4 +679,65 @@ if ('serviceWorker' in navigator) {
   });
 }
 </script>
+
+<style>
+.nqi{margin-top:16px;padding:14px 16px;border:1px solid rgba(127,127,127,.3);border-radius:12px;
+font-size:14px;line-height:1.55;display:none}
+.nqi b{display:block;font-size:14.5px;margin-bottom:4px}
+.nqi p{margin:0;opacity:.82;font-size:13.5px}
+.nqi button{font:inherit;font-size:13.5px;font-weight:700;margin-top:10px;padding:9px 18px;
+border-radius:999px;border:1.5px solid currentColor;background:transparent;color:inherit;cursor:pointer}
+.nqi button:hover{opacity:.75}
+.nqi ol{margin:8px 0 0 18px;padding:0;font-size:13.5px;opacity:.82}
+.nqi li{margin-bottom:3px}
+@media print{.nqi{display:none!important}}
+</style>
+<script>
+/* Install helper. Three states, because the three platforms genuinely differ and
+   telling everyone to "click install" would be wrong for roughly half of them:
+     Chrome / Edge / Android — a real button, using the deferred prompt event.
+     iOS Safari              — no API exists; show the actual tap sequence.
+     Already installed       — say nothing at all.
+   Lives inside the answer section, below the fold: somebody who has not run the
+   tool yet has no reason to install it. */
+(function(){
+  var host = document.querySelector('.nqa-foot') || document.querySelector('.nqa');
+  if(!host) return;
+  var box = document.createElement('div');
+  box.className = 'nqi';
+  host.parentNode.insertBefore(box, host.nextSibling);
+
+  var standalone = window.matchMedia('(display-mode: standalone)').matches
+                   || window.navigator.standalone === true;
+  if(standalone) return;                       // already installed — nothing to say
+
+  var ua = navigator.userAgent || '';
+  var isIOS = /iPad|iPhone|iPod/.test(ua) && !window.MSStream;
+  var deferred = null;
+
+  window.addEventListener('beforeinstallprompt', function(e){
+    e.preventDefault(); deferred = e;
+    box.innerHTML = '<b>Install BuildBrief on this device</b>' +
+      '<p>It opens in its own window, keeps working the same way, and takes about two seconds. ' +
+      'Nothing is downloaded from a store and no account is created.</p>' +
+      '<button type="button">Install BuildBrief</button>';
+    box.style.display = 'block';
+    box.querySelector('button').addEventListener('click', function(){
+      if(!deferred) return;
+      deferred.prompt();
+      deferred.userChoice.then(function(){ deferred = null; box.style.display = 'none'; });
+    });
+  });
+
+  if(isIOS){
+    box.innerHTML = '<b>Add BuildBrief to your Home Screen</b>' +
+      '<p>iPhone and iPad do this from the Share menu rather than a button:</p>' +
+      '<ol><li>Tap the Share icon — the square with an arrow, at the bottom of Safari.</li>' +
+      '<li>Scroll down and tap <b>Add to Home Screen</b>.</li>' +
+      '<li>Tap <b>Add</b>. BuildBrief appears with the other apps.</li></ol>';
+    box.style.display = 'block';
+  }
+})();
+</script>
+
 </body></html>
