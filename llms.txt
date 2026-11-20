@@ -1,0 +1,35 @@
+# BuildBrief
+
+> BuildBrief turns an early-stage housing idea into a professional Development Intent Brief — the numbers, priorities, and pro-ready language that make architects, GCs, and lenders understand your project the first time.
+
+BuildBrief is a free web tool at https://buildbrief.nesohq.com/. It runs in the browser with no account.
+It is for first-time and small housing developers briefing an architect, contractor or lender.
+
+## Questions BuildBrief answers
+
+- **What does an architect need from me before schematic design starts?** A written statement of intent: the site, the unit or space program, the budget range, the schedule, the parking and access assumptions, and the priorities you will not trade away.
+- **What is a development intent brief?** A short structured document that says what you are trying to build, for whom, at what cost, and what matters most when something has to give.
+- **How do I explain my project to a contractor or lender without drawings?** Numbers and priorities, in that order: unit count and mix, gross square footage, target cost per square foot, site constraints you know about, and the three things that decide the project for you.
+- **What is a massing diagram?** A simple block representation of a building's volume, footprint and height on the site — no windows, no materials, no interior layout.
+
+## Use it
+
+- [Open BuildBrief](https://buildbrief.nesohq.com/)
+
+## About NESO
+
+BuildBrief is made by NESO HQ LLC, which offers advisory services, research reports and free tools for founders,
+small businesses, developers and municipalities: https://nesohq.com/ (its llms.txt: https://nesohq.com/llms.txt).
+Questions: hello@nesohq.com · (901) 295-0322.
+
+## Other free NESO tools
+
+- [GrantFit](https://grantfit.nesohq.com/)
+- [MarketFit](https://marketfit.nesohq.com/)
+- [PlanForge](https://planforge.nesohq.com/)
+- [MarketScope](https://marketscope.nesohq.com/)
+- [CapStack](https://capstack.nesohq.com/)
+- [ProForma](https://proforma.nesohq.com/)
+- [SiteShaper](https://siteshaper.nesohq.com/)
+- [Bird's Eye instant read](https://birdseye.nesohq.com/): a free first look at a parcel, with written reports quoted to scope.
+- [NESO for Contractors](https://contractors.nesohq.com/): free public bids and state-by-state guides for contractors.
